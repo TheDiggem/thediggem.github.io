@@ -1,46 +1,56 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>The Diggem</title>
   <style>
     body {
-      margin: 0;
-      padding: 0;
+      background-color: #000;
+      color: #f5f5dc;
       font-family: Arial, sans-serif;
-      background: #000;
-      color: #F5F5DC;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      height: 100vh;
       text-align: center;
+      height: 100vh;
+      margin: 0;
     }
     h1 {
       font-size: 3em;
-      margin-bottom: 0.2em;
+      color: #ffffff;
+      text-shadow: 0 0 5px #f5f5dc;
     }
     p {
       font-size: 1.2em;
-      margin-bottom: 2em;
+      color: #ccc;
+      margin-top: 0.5em;
+      margin-bottom: 1.5em;
     }
-    .buttons a {
-      display: inline-block;
-      margin: 10px;
-      padding: 15px 25px;
-      border: 2px solid #F5F5DC;
-      color: #F5F5DC;
+    h2 {
+      font-size: 1.8em;
+      color: #f5f5dc;
+      margin: 0.5em 0;
+    }
+    .button-container {
+      display: flex;
+      gap: 1em;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 1em;
+    }
+    a.button {
+      padding: 12px 20px;
+      color: #ffffff;
+      background: transparent;
+      border: 2px solid #f5f5dc;
       text-decoration: none;
-      font-weight: bold;
-      border-radius: 8px;
+      border-radius: 6px;
       transition: all 0.3s ease;
     }
-    .buttons a:hover {
-      background: #F5F5DC;
+    a.button:hover {
+      background-color: #f5f5dc;
       color: #000;
     }
   </style>
@@ -48,10 +58,14 @@
 <body>
   <h1>THE DIGGEM</h1>
   <p>A brand for the broken, burned, and unburied.</p>
-  <div class="buttons">
-    <a href="https://www.amazon.com/stores/page/your-store-link" target="_blank">Shop Artifacted Threads</a>
-    <a href="https://www.youtube.com/@thediggem" target="_blank">Watch on YouTube</a>
-    <a href="mailto:info@thediggem.com">Contact</a>
+
+  <h2>THE DIGGEM CLOTHING</h2>
+  <h2>Artifacted Threads</h2>
+
+  <div class="button-container">
+    <a href="https://www.amazon.com/your-link-here" class="button">Shop Artifacted Threads</a>
+    <a href="https://www.youtube.com/@TheDiggem" class="button">Watch on YouTube</a>
+    <a href="mailto:your@email.com" class="button">Contact</a>
   </div>
 </body>
 </html>

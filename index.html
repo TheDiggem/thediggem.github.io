@@ -10,7 +10,7 @@
       color: #fff;
       font-family: 'Arial', sans-serif;
       text-align: center;
-      padding-top: 100px;
+      padding-top: 80px;
     }
 
     h1 {
@@ -19,59 +19,64 @@
       color: #f0f0f0;
     }
 
-    h2, h3 {
-      font-weight: bold;
-      color: #fff;
-      margin-top: 20px;
+    .diggem-links-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 25px;
+      margin-top: 40px;
     }
 
-    .button {
-      display: inline-block;
-      margin: 15px 10px;
-      padding: 14px 24px;
-      font-size: 16px;
-      background-color: #111;
-      color: #fff;
-      border: 2px solid #fff;
-      border-radius: 6px;
-      text-decoration: none;
-      transition: all 0.3s ease;
+    .diggem-link-item {
+      width: 120px;
+      transition: transform 0.3s ease;
     }
 
-    .button:hover {
-      background-color: #fff;
-      color: #000;
+    .diggem-link-item:hover {
+      transform: scale(1.07);
     }
-</style>
+
+    .diggem-link-img {
+      width: 100%;
+      height: auto;
+      border-radius: 50%;
+    }
+
+    @media (max-width: 600px) {
+      .diggem-link-item {
+        width: 90px;
+      }
+    }
+  </style>
 </head>
 <body>
   <h1>THE DIGGEM</h1>
 
- <div class="diggem-links-container">
-  <!-- Artifacted Threads -->
-  <a href="https://bit.ly/44NISFq" target="_blank" class="diggem-link-item">
-    <img src="artifactedthreadsLogo002.png" alt="Artifacted Threads" class="diggem-link-img">
-    <div class="diggem-link-label">Shop Artifacted Threads</div>
-  </a>
+  <div class="diggem-links-container">
+    <!-- Artifacted Threads -->
+    <a href="https://bit.ly/44NISFq" target="_blank" class="diggem-link-item">
+      <img src="WBSArtifactedThreadsLogo001.png" alt="Artifacted Threads" class="diggem-link-img">
+    </a>
 
-  <!-- The Diggem Clothing -->
-<a href="https://amzn.to/46ve3qe" target="_blank" class="diggem-link-item">
-  <img src="TheDiggemClothingLogo001.png" alt="The Diggem Clothing" class="diggem-link-img small-logo">
-  <div class="diggem-link-label">The Diggem Clothing</div>
-</a>
+    <!-- The Diggem Clothing -->
+    <a href="https://amzn.to/46ve3qe" target="_blank" class="diggem-link-item">
+      <img src="WBSTheDiggemClothingLogo001.png" alt="The Diggem Clothing" class="diggem-link-img">
+    </a>
 
-  <!-- The Diggem Gaming -->
-  <a href="https://youtube.com/@thediggemgaming?si=jwg-vQjMajM3RVIU" target="_blank" class="diggem-link-item">
-    <img src="diggamelogo001.png" alt="The Diggem Gaming" class="diggem-link-img">
-    <div class="diggem-link-label">The Diggem Gaming</div>
-  </a>
-</div>
+    <!-- Main YouTube Channel -->
+    <a href="https://www.youtube.com/@TheDiggemOfficial" target="_blank" class="diggem-link-item">
+      <img src="WBSTheDiggemyoutubeLogo001.png" alt="Main YouTube Channel" class="diggem-link-img">
+    </a>
 
-<!-- Contact -->
-<div class="diggem-contact">
-  📧 Contact: <a href="mailto:thediggem@yahoo.com">thediggem@yahoo.com</a>
-</div>
+    <!-- Gaming YouTube Channel -->
+    <a href="https://youtube.com/@thediggemgaming?si=jwg-vQjMajM3RVIU" target="_blank" class="diggem-link-item">
+      <img src="WBSTheDiggemGamingLogo001.png" alt="Gaming YouTube Channel" class="diggem-link-img">
+    </a>
 
-  </a>
+    <!-- Email Contact -->
+    <a href="mailto:thediggem@yahoo.com" class="diggem-link-item">
+      <img src="WBSTheDiggemEmailLogo001.png" alt="Email thediggem@yahoo.com" class="diggem-link-img">
+    </a>
+  </div>
 </body>
 </html>

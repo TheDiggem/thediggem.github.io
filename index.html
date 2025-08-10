@@ -3,310 +3,107 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>The Diggem</title>
-  <meta name="description" content="Gaming, Texas, politics, and the truths they don't want you to see." />
+  <title>The Diggem — Under Construction</title>
+  <meta name="description" content="The Diggem is getting an upgrade. Come back soon." />
 
   <!-- Open Graph / Facebook -->
-  <meta property="og:title" content="The Diggem" />
-  <meta property="og:description" content="Gaming, Texas, politics, and the truths they don't want you to see." />
+  <meta property="og:title" content="The Diggem — Under Construction" />
+  <meta property="og:description" content="The Diggem is getting an upgrade. Come back soon." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://thediggem.github.io/" />
   <meta property="og:image" content="https://thediggem.github.io/og-image.png" />
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="The Diggem" />
-  <meta name="twitter:description" content="Gaming, Texas, politics, and the truths they don't want you to see." />
+  <meta name="twitter:title" content="The Diggem — Under Construction" />
+  <meta name="twitter:description" content="The Diggem is getting an upgrade. Come back soon." />
   <meta name="twitter:image" content="https://thediggem.github.io/og-image.png" />
 
+  <!-- Canonical URL -->
   <link rel="canonical" href="https://thediggem.github.io/" />
 
   <style>
-    :root{
-      --bg:#0b0b0c; --text:#f2f2f2; --muted:#b5b8bd;
-      --accent:#d9a441; --ring: rgba(217,164,65,.35);
-      --radius:18px;
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #0b0b0c;
+      color: #f2f2f2;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      text-align: center;
+      background: radial-gradient(circle at center, #1a1a1d 0%, #0b0b0c 100%);
+      padding: 20px;
     }
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{margin:0;font-family:ui-sans-serif,system-ui,Segoe UI,Roboto,Inter,Arial,sans-serif;color:var(--text);
-      background:radial-gradient(1200px 800px at 50% -10%, rgba(255,255,255,.05), transparent 60%), var(--bg);}
-    body::before{content:"";position:fixed;inset:0;pointer-events:none;mix-blend-mode:soft-light;
-      background: repeating-linear-gradient(120deg, rgba(255,255,255,.02) 0 2px, transparent 2px 4px);}
-    a{color:inherit;text-decoration:none}
-    .container{max-width:1100px;margin:0 auto;padding:28px 18px 64px}
-    header{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
-    .brand{display:flex;flex-direction:column;gap:6px}
-    .brand h1{margin:0;letter-spacing:.08em;font-size:clamp(22px,4vw,32px)}
-    .tagline{color:var(--muted);font-size:clamp(12px,2.3vw,14px)}
-    .subnav{display:flex;gap:.5rem;flex-wrap:wrap;margin-top:.5rem}
-    .subnav a{background:#181a1e;border:1px solid #23262b;padding:.45rem .8rem;border-radius:999px;font-size:.85rem}
-    .subnav a.support{background:#3a2b10;border-color:#4a3614;color:#e8d2a6}
-    .cta-row{display:flex;gap:12px;flex-wrap:wrap}
-    .btn{display:inline-flex;align-items:center;gap:10px;padding:12px 16px;border-radius:999px;background:linear-gradient(180deg,#1a1c20,#121316);border:1px solid #2a2d33}
-    .btn.primary{border-color:#584318;background:linear-gradient(180deg,#2a2313,#13100a);}
-    .hero{padding:36px 0 10px}
-    .hero h2{font-size:clamp(26px,6.5vw,54px);margin:14px 0 6px;letter-spacing:.06em}
-    .hero p{margin:0;color:var(--muted)}
-    .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin-top:26px}
-    @media (min-width:760px){.grid{grid-template-columns:repeat(5,minmax(0,1fr));}}
-    .linkcard{position:relative;text-align:center;padding:16px 8px 14px;border-radius:var(--radius);background:linear-gradient(180deg,#15171a,#0f1012);border:1px solid #1e2025}
-    .icon-circle{width:88px;height:88px;margin:8px auto 10px;border-radius:50%;display:grid;place-items:center;color:#fff;font-weight:700;letter-spacing:.04em;
-      background:radial-gradient(60% 60% at 30% 30%, rgba(255,255,255,.15), rgba(255,255,255,0) 70%),linear-gradient(145deg,#202329,#0d0f12);
-      border:1px solid #2a2d33;}
-    .label{font-size:14px;font-weight:600}
-    .sublabel{font-size:12px;color:var(--muted);margin-top:2px}
-
-    .topic-section,.latest{margin-top:34px;padding:18px;border-radius:var(--radius);background:linear-gradient(180deg,#121317,#0f1012);border:1px solid #22242a}
-    .section-header{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:8px}
-    .section-header h3{margin:0 0 2px;font-size:18px;letter-spacing:.06em}
-    .see-all{font-size:12px;color:var(--muted);border:1px solid #24262c;padding:6px 10px;border-radius:999px;background:linear-gradient(180deg,#16181c,#101114)}
-
-    .posts{display:grid;grid-template-columns:1fr;gap:14px;margin-top:10px}
-    @media(min-width:760px){.posts{grid-template-columns:repeat(3,minmax(0,1fr));}}
-    .post-card{padding:14px;border-radius:12px;background:linear-gradient(180deg,#15171a,#111216);border:1px solid #24262c}
-    .post-card h4{margin:0 0 6px;font-size:16px}
-    .post-card p{margin:0 0 8px;color:var(--muted);font-size:14px}
-    .read-more{font-size:13px;text-decoration:underline}
-
-    .video-wrap{position:relative;padding-top:56.25%;border-radius:12px;overflow:hidden;background:#000;border:1px solid #262830}
-    .video-wrap iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
-
-    footer{margin-top:40px;color:var(--muted);font-size:13px;text-align:center}
-    .socials{display:flex;flex-wrap:wrap;gap:12px;margin-top:8px;justify-content:center}
-    .socials a{padding:8px 12px;border:1px solid #24262c;border-radius:999px;background:linear-gradient(180deg,#17191d,#101216)}
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      color: #d9a441;
+    }
+    p {
+      color: #b5b8bd;
+      max-width: 500px;
+      font-size: 1.1rem;
+    }
+    .logo {
+      font-size: 5rem;
+      margin-bottom: 1.5rem;
+    }
+    .og-image {
+      max-width: 100%;
+      height: auto;
+      margin: 20px 0;
+      border: 3px solid #22242a;
+      border-radius: 8px;
+    }
+    form {
+      margin-top: 2rem;
+      background: #121317;
+      padding: 20px;
+      border-radius: 10px;
+      max-width: 400px;
+      width: 100%;
+      border: 1px solid #22242a;
+    }
+    input, textarea {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+      border-radius: 5px;
+      border: none;
+      background: #0b0b0c;
+      color: #fff;
+    }
+    button {
+      margin-top: 10px;
+      padding: 10px 20px;
+      border: none;
+      background: #d9a441;
+      color: #000;
+      font-weight: bold;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #b98b36;
+    }
   </style>
 </head>
 <body>
-  <div class="container">
-    <header>
-      <div class="brand">
-        <h1>THE DIGGEM</h1>
-        <div class="tagline" id="tagline">Gaming, Texas, and calling out the crap they don’t want you to see.</div>
-        <nav class="subnav" aria-label="Main">
-          <a href="index.html">Home</a>
-          <a href="gaming.html">Gaming</a>
-          <a href="politics.html">Politics</a>
-          <a href="trafficking.html">Trafficking &amp; Missing</a>
-          <a href="texas.html">Texas</a>
-          <a href="shop.html">Shop</a>
-          <a href="#contact">Contact</a>
-          <a href="https://www.buymeacoffee.com/thediggem" target="_blank" rel="noopener" class="support">Support</a>
-        </nav>
-      </div>
-      <nav class="cta-row" aria-label="Primary">
-        <a class="btn primary" href="#latest">Watch Latest Video</a>
-        <a class="btn" href="shop.html">Shop Merch</a>
-      </nav>
-    </header>
+  <div class="logo">🚧</div>
+  <h1>Under Construction</h1>
+  <img src="https://thediggem.github.io/og-image.png" alt="The Diggem" class="og-image">
+  <p>The Diggem is getting an upgrade.<br>Check back soon for the full experience.</p>
 
-    <section class="hero" aria-labelledby="intro-title">
-      <h2 id="intro-title">Missing persons, political lies, and the games that keep me sane.</h2>
-      <p>Start here. Click a tile below.</p>
-    </section>
-
-    <!-- Top tiles (use Shop for both apparel brands for now) -->
-    <section class="grid" aria-label="Main links">
-      <a class="linkcard" href="shop.html">
-        <div class="icon-circle">AT</div>
-        <div class="label">Artifacted Threads</div>
-        <div class="sublabel">Apparel</div>
-      </a>
-      <a class="linkcard" href="shop.html">
-        <div class="icon-circle">DC</div>
-        <div class="label">Diggem Clothing</div>
-        <div class="sublabel">Shop</div>
-      </a>
-      <a class="linkcard" href="politics.html">
-        <div class="icon-circle">DL</div>
-        <div class="label">Digging Life</div>
-        <div class="sublabel">Podcast</div>
-      </a>
-      <a class="linkcard" href="gaming.html">
-        <div class="icon-circle">GO</div>
-        <div class="label">Game Over</div>
-        <div class="sublabel">YouTube</div>
-      </a>
-      <a class="linkcard" href="#contact">
-        <div class="icon-circle">✉</div>
-        <div class="label">Contact</div>
-        <div class="sublabel">Email me</div>
-      </a>
-    </section>
-
-    <!-- Topic sections -->
-    <section id="gaming" class="topic-section" aria-labelledby="gaming-title">
-      <div class="section-header">
-        <h3 id="gaming-title">Gaming</h3>
-        <a class="see-all" href="gaming.html">See all</a>
-      </div>
-      <div class="posts">
-        <article class="post-card">
-          <h4>First look: [Game Title] — honest take</h4>
-          <p>Quick thoughts, no fluff. What’s good, what’s broken, and if I’d buy it again.</p>
-          <a class="read-more" href="#">Read more →</a>
-        </article>
-        <article class="post-card">
-          <h4>Clip: I finally beat the boss</h4>
-          <p>Short clip + setup. Timestamped link to the rage moment.</p>
-          <a class="read-more" href="#">Watch →</a>
-        </article>
-        <article class="post-card">
-          <h4>Retro corner: comfort games</h4>
-          <p>Why I go back to old-school titles when new releases feel mid.</p>
-          <a class="read-more" href="#">Read more →</a>
-        </article>
-      </div>
-    </section>
-
-    <section id="politics" class="topic-section" aria-labelledby="politics-title">
-      <div class="section-header">
-        <h3 id="politics-title">Government &amp; Politics</h3>
-        <a class="see-all" href="politics.html">See all</a>
-      </div>
-      <div class="posts">
-        <article class="post-card">
-          <h4>Two-party theater: latest example</h4>
-          <p>Short breakdown with receipts. No teams, just facts and patterns.</p>
-          <a class="read-more" href="#">Read more →</a>
-        </article>
-        <article class="post-card">
-          <h4>Media spin vs. source docs</h4>
-          <p>Compare the headline to the actual PDF. Decide for yourself.</p>
-          <a class="read-more" href="#">Open sources →</a>
-        </article>
-        <article class="post-card">
-          <h4>Texas angle: what it means here</h4>
-          <p>How national moves hit Texas wallets, rights, and daily life.</p>
-          <a class="read-more" href="#">Read more →</a>
-        </article>
-      </div>
-    </section>
-
-    <section id="trafficking" class="topic-section" aria-labelledby="trafficking-title">
-      <div class="section-header">
-        <h3 id="trafficking-title">Trafficking &amp; Missing Persons</h3>
-        <a class="see-all" href="trafficking.html">See all</a>
-      </div>
-      <div class="posts">
-        <article class="post-card">
-          <h4>Case file: who’s missing & why it stalled</h4>
-          <p>Timeline + links to public records. What to look for next.</p>
-          <a class="read-more" href="#">Read more →</a>
-        </article>
-        <article class="post-card">
-          <h4>How to read a “statement”</h4>
-          <p>Spot the red flags in official language. Checklist + examples.</p>
-          <a class="read-more" href="#">Read more →</a>
-        </article>
-        <article class="post-card">
-          <h4>Resources & hotlines</h4>
-          <p>Verified orgs and steps if you think someone’s at risk.</p>
-          <a class="read-more" href="#">Open list →</a>
-        </article>
-      </div>
-    </section>
-
-    <section id="texas" class="topic-section" aria-labelledby="texas-title">
-      <div class="section-header">
-        <h3 id="texas-title">Texas</h3>
-        <a class="see-all" href="texas.html">See all</a>
-      </div>
-      <div class="posts">
-        <article class="post-card">
-          <h4>Local wins & losses this week</h4>
-          <p>What mattered in Texas — not what trended.</p>
-          <a class="read-more" href="#">Read more →</a>
-        </article>
-        <article class="post-card">
-          <h4>Texan gear I actually use</h4>
-          <p>Stuff that holds up. No paid fluff. Links where it makes sense.</p>
-          <a class="read-more" href="#">See picks →</a>
-        </article>
-        <article class="post-card">
-          <h4>Life update</h4>
-          <p>Behind-the-scenes — moving, work, the grind, the wins.</p>
-          <a class="read-more" href="#">Read more →</a>
-        </article>
-      </div>
-    </section>
-
-    <!-- Featured merch -->
-    <section id="merch" class="latest" aria-labelledby="merch-title">
-      <div class="section-header">
-        <h3 id="merch-title">Featured Merch</h3>
-        <a class="see-all" href="shop.html">Shop</a>
-      </div>
-      <div class="posts">
-        <article class="post-card">
-          <h4>Drop: “Saint in Rebellion” tee</h4>
-          <p>La Santa Muerte inspired — gritty, classic iconography. Front & back print.</p>
-          <a class="read-more" href="shop.html">Shop now →</a>
-        </article>
-      </div>
-    </section>
-
-    <!-- Latest video -->
-    <section id="latest" class="latest" aria-labelledby="latest-title">
-      <div class="section-header">
-        <h3 id="latest-title">Latest</h3>
-        <a class="see-all" href="https://www.youtube.com/@TheDiggemOfficial" target="_blank" rel="noopener">Visit Channel</a>
-      </div>
-      <div class="video-wrap">
-        <!-- Auto-latest uploads for channel handle (works for most channels).
-             If it doesn't show, swap to a specific video ID: https://www.youtube.com/embed/VIDEO_ID -->
-        <iframe title="Latest video" src="https://www.youtube.com/embed?listType=user_uploads&list=TheDiggemOfficial"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-      </div>
-    </section>
-
-    <!-- Contact -->
-    <section class="latest" id="contact" aria-labelledby="contact-title">
-      <h3 id="contact-title">Contact</h3>
-      <form class="contact" action="https://formspree.io/f/your-id" method="POST" style="display:grid;gap:.75rem;max-width:640px;margin:1rem auto">
-        <input type="text" name="name" placeholder="Your name" required
-          style="background:#15171a;border:1px solid #24262c;border-radius:8px;color:#f2f2f2;padding:.7rem">
-        <input type="email" name="email" placeholder="Your email" required
-          style="background:#15171a;border:1px solid #24262c;border-radius:8px;color:#f2f2f2;padding:.7rem">
-        <textarea name="message" rows="5" placeholder="Your message" required
-          style="background:#15171a;border:1px solid #24262c;border-radius:8px;color:#f2f2f2;padding:.7rem"></textarea>
-        <button type="submit" style="background:#3a2b10;border:1px solid #4a3614;color:#e8d2a6;padding:.6rem 1rem;border-radius:8px;cursor:pointer">
-          Send
-        </button>
-      </form>
-    </section>
-
-    <footer>
-      <div>© 2025 The Diggem. All rights reserved.</div>
-      <div class="socials" aria-label="Social links">
-        <a href="https://x.com/yourhandle" target="_blank" rel="noopener">X / Twitter</a>
-        <a href="https://youtube.com/@TheDiggemOfficial" target="_blank" rel="noopener">YouTube</a>
-        <a href="https://instagram.com/yourhandle" target="_blank" rel="noopener">Instagram</a>
-        <a href="https://twitch.tv/thediggem" target="_blank" rel="noopener">Twitch</a>
-      </div>
-    </footer>
-  </div>
-
-  <script>
-    // Smooth scroll for internal anchors
-    document.querySelectorAll('a[href^="#"]').forEach(a=>{
-      a.addEventListener('click', e=>{
-        const id=a.getAttribute('href');
-        if(id.length>1){ e.preventDefault(); document.querySelector(id)?.scrollIntoView({behavior:'smooth'}); }
-      });
-    });
-
-    // Rotate taglines every 6s
-    const taglines=[
-      "Gaming, Texas, and calling out the crap they don’t want you to see.",
-      "Missing persons, political lies, and the games that keep me sane."
-    ];
-    let tIndex=0;
-    setInterval(()=>{
-      tIndex=(tIndex+1)%taglines.length;
-      const el=document.getElementById('tagline');
-      if(el){ el.textContent=taglines[tIndex]; }
-    },6000);
-  </script>
+  <!-- Contact Form -->
+  <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+    <h2>Contact Me</h2>
+    <input type="text" name="name" placeholder="Your Name" required>
+    <input type="email" name="_replyto" placeholder="Your Email" required>
+    <textarea name="message" placeholder="Your Message" rows="4" required></textarea>
+    <button type="submit">Send</button>
+  </form>
 </body>
 </html>

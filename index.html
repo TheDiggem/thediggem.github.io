@@ -30,7 +30,21 @@
     .logo-primary {
       max-width: 200px;
       margin-bottom: 20px;
-      animation: neon-glow 2s ease-in-out infinite;
+      position: relative;
+    }
+    .logo-primary::before {
+      content: '';
+      position: absolute;
+      top: -10px;
+      left: -10px;
+      right: -10px;
+      bottom: -10px;
+      background: linear-gradient(45deg, #355E3B, #2F4F2F, #355E3B); /* Toxic green sludge gradient */
+      -webkit-background-clip: padding-box;
+      background-clip: padding-box;
+      border-radius: 50%;
+      animation: toxic-glow 2s ease-in-out infinite;
+      z-index: -1;
     }
     .logo-secondary {
       max-width: 100px;
@@ -96,11 +110,6 @@
       0% { box-shadow: 0 0 10px #355E3B, 0 0 20px #2F4F2F; }
       50% { box-shadow: 0 0 20px #355E3B, 0 0 30px #2F4F2F; }
       100% { box-shadow: 0 0 10px #355E3B, 0 0 20px #2F4F2F; }
-    }
-    @keyframes neon-glow {
-      0% { filter: drop-shadow(0 0 10px #f48c06); }
-      50% { filter: drop-shadow(0 0 20px #f48c06); }
-      100% { filter: drop-shadow(0 0 10px #f48c06); }
     }
   </style>
 </head>

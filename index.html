@@ -1,109 +1,132 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>The Diggem — Under Construction</title>
-  <meta name="description" content="The Diggem is getting an upgrade. Come back soon." />
-
-  <!-- Open Graph / Facebook -->
-  <meta property="og:title" content="The Diggem — Under Construction" />
-  <meta property="og:description" content="The Diggem is getting an upgrade. Come back soon." />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://thediggem.github.io/" />
-  <meta property="og:image" content="https://thediggem.github.io/og-image.png" />
-
-  <!-- Twitter -->
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="The Diggem — Under Construction" />
-  <meta name="twitter:description" content="The Diggem is getting an upgrade. Come back soon." />
-  <meta name="twitter:image" content="https://thediggem.github.io/og-image.png" />
-
-  <!-- Canonical URL -->
-  <link rel="canonical" href="https://thediggem.github.io/" />
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Diggem | Coming Soon</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat&display=swap" rel="stylesheet">
   <style>
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
-      background: #0b0b0c;
-      color: #f2f2f2;
+      font-family: 'Bebas Neue', sans-serif;
+      background: #1a1a1a;
+      color: #fff;
       display: flex;
-      flex-direction: column;
       justify-content: center;
       align-items: center;
-      min-height: 100vh;
+      height: 100vh;
       text-align: center;
-      background: radial-gradient(circle at center, #1a1a1d 0%, #0b0b0c 100%);
+      overflow: hidden;
+    }
+    .container {
       padding: 20px;
+      max-width: 600px;
+    }
+    .logo-primary {
+      max-width: 200px;
+      margin-bottom: 10px;
+      animation: neon-glow 2s ease-in-out infinite;
+    }
+    .logo-secondary {
+      max-width: 100px;
+      margin: 5px;
+      animation: neon-glow 2s ease-in-out infinite;
+    }
+    .logo-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 20px;
     }
     h1 {
-      font-size: 3rem;
-      margin-bottom: 1rem;
-      color: #d9a441;
+      font-size: 3.5em;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      background: linear-gradient(45deg, #355E3B, #2F4F2F, #355E3B); /* Toxic sludge gradient: dark green shades */
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.8), 0 0 10px rgba(53, 94, 59, 0.5); /* Sludge drip effect */
+      font-family: 'Bebas Neue', sans-serif;
     }
     p {
-      color: #b5b8bd;
-      max-width: 500px;
-      font-size: 1.1rem;
-    }
-    .logo {
-      font-size: 5rem;
-      margin-bottom: 1.5rem;
-    }
-    .og-image {
-      max-width: 100%;
-      height: auto;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.5em;
       margin: 20px 0;
-      border: 3px solid #22242a;
-      border-radius: 8px;
-    }
-    form {
-      margin-top: 2rem;
-      background: #121317;
-      padding: 20px;
-      border-radius: 10px;
-      max-width: 400px;
-      width: 100%;
-      border: 1px solid #22242a;
-    }
-    input, textarea {
-      width: 100%;
-      padding: 10px;
-      margin-top: 10px;
-      border-radius: 5px;
-      border: none;
-      background: #0b0b0c;
       color: #fff;
     }
-    button {
-      margin-top: 10px;
-      padding: 10px 20px;
+    .signup-form {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin: 20px 0;
+    }
+    input {
+      padding: 10px;
+      background: #333;
       border: none;
-      background: #d9a441;
-      color: #000;
-      font-weight: bold;
+      color: #fff;
+      border-radius: 5px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1em;
+    }
+    button {
+      background: #e63946;
+      color: #fff;
+      padding: 10px;
+      border: none;
       border-radius: 5px;
       cursor: pointer;
+      font-size: 1.2em;
+      transition: background 0.3s;
     }
     button:hover {
-      background: #b98b36;
+      background: #f48c06;
+    }
+    .social-links {
+      margin-top: 20px;
+    }
+    .social-links a {
+      color: #fff;
+      margin: 0 15px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.2em;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    .social-links a:hover {
+      color: #e63946;
+    }
+    @keyframes neon-glow {
+      0% { filter: drop-shadow(0 0 10px #f48c06); }
+      50% { filter: drop-shadow(0 0 20px #f48c06); }
+      100% { filter: drop-shadow(0 0 10px #f48c06); }
     }
   </style>
 </head>
 <body>
-  <div class="logo">🚧</div>
-  <h1>Under Construction</h1>
-  <img src="https://thediggem.github.io/og-image.png" alt="The Diggem" class="og-image">
-  <p>The Diggem is getting an upgrade.<br>Check back soon for the full experience.</p>
-
-  <!-- Contact Form -->
-  <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
-    <h2>Contact Me</h2>
-    <input type="text" name="name" placeholder="Your Name" required>
-    <input type="email" name="_replyto" placeholder="Your Email" required>
-    <textarea name="message" placeholder="Your Message" rows="4" required></textarea>
-    <button type="submit">Send</button>
-  </form>
+  <div class="container">
+    <a href="https://thediggem.com" target="_blank"><img src="TheDiggemClothingLogo001.png" class="logo-primary" alt="The Diggem Clothing Logo"></a>
+    <div class="logo-grid">
+      <a href="https://www.amazon.com/s?rh=n%3A7141123011%2Cp_4%3AThe%2BDiggem%2BClothing&ref=bl_sl_s_ap_web_7141123011" target="_blank"><img src="WBSTheDiggemClothingLogo001.png" class="logo-secondary" alt="WBS The Diggem Clothing Logo"></a>
+      <a href="https://www.youtube.com/@TheDiggemGaming" target="_blank"><img src="WBSTheDiggemGamingLogo001.png" class="logo-secondary" alt="WBS The Diggem Gaming Logo"></a>
+      <a href="https://www.youtube.com/@TheDiggemOfficial" target="_blank"><img src="WBSTheDiggemyoutubeLogo001.png" class="logo-secondary" alt="WBS The Diggem YouTube Logo"></a>
+      <a href="https://thediggem.com/portfolio" target="_blank"><img src="WBSArtifactedThreadsLogo001.png" class="logo-secondary" alt="WBS Artifacted Threads Logo"></a>
+    </div>
+    <h1>The Diggem</h1>
+    <p>Unleash Your Edge. Coming Soon! 🔥</p>
+    <form class="signup-form" action="https://your-mailchimp-form-url" method="post">
+      <input type="email" placeholder="Enter your email for updates" required>
+      <button type="submit">Join the Rebellion</button>
+    </form>
+    <div class="social-links">
+      <a href="https://www.youtube.com/@TheDiggemOfficial" target="_blank">YouTube Main</a>
+      <a href="https://www.youtube.com/@TheDiggemGaming" target="_blank">YouTube Gaming</a>
+      <a href="https://www.amazon.com/s?rh=n%3A7141123011%2Cp_4%3AThe%2BDiggem%2BClothing&ref=bl_sl_s_ap_web_7141123011" target="_blank">Shop Merch</a>
+      <a href="https://instagram.com/thediggemclothing" target="_blank">Instagram</a>
+      <a href="https://your-podcast-link" target="_blank">Podcast</a>
+    </div>
+  </div>
 </body>
 </html>

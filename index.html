@@ -5,9 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta property="og:title" content="The Diggem | Coming Soon">
   <meta property="og:description" content="Unleash Your Edge with Texas-inspired toxic streetwear and podcasts. Shop at thediggem.com! 🔥">
-  <meta property="og:image" content="https://thediggem.com/TDlogo.png"> <!-- Update with your hosted URL -->
+  <meta property="og:image" content="https://thediggem.com/TDlogo.png"> <!-- Update with your hosted URL after upload -->
   <meta property="og:url" content="https://thediggem.com">
   <meta property="og:type" content="website">
+  <meta property="og:image:width" content="1200"> <!-- Optional: Specify image dimensions -->
+  <meta property="og:image:height" content="630"> <!-- Optional: Specify image dimensions -->
   <title>The Diggem | Coming Soon</title>
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat&display=swap" rel="stylesheet">
   <style>
@@ -35,17 +37,15 @@
     .logo-primary::before {
       content: '';
       position: absolute;
-      top: -15px;
-      left: -15px;
-      right: -15px;
-      bottom: -15px;
-      background: linear-gradient(45deg, #355E3B, #2F4F2F, #355E3B); /* Toxic green sludge gradient */
-      -webkit-background-clip: padding-box;
-      background-clip: padding-box;
+      top: -20px;
+      left: -20px;
+      right: -20px;
+      bottom: -20px;
+      background: #2F4F2F; /* Solid toxic green base */
       border-radius: 50%;
       animation: toxic-glow 1.5s ease-in-out infinite;
       z-index: -1;
-      opacity: 0.9; /* Increased opacity for visibility */
+      opacity: 0.9; /* High visibility */
     }
     .logo-secondary {
       max-width: 100px;
@@ -55,17 +55,15 @@
     .logo-secondary::before {
       content: '';
       position: absolute;
-      top: -15px;
-      left: -15px;
-      right: -15px;
-      bottom: -15px;
-      background: linear-gradient(45deg, #355E3B, #2F4F2F, #355E3B); /* Toxic green sludge gradient */
-      -webkit-background-clip: padding-box;
-      background-clip: padding-box;
+      top: -20px;
+      left: -20px;
+      right: -20px;
+      bottom: -20px;
+      background: #2F4F2F; /* Solid toxic green base */
       border-radius: 50%;
       animation: toxic-glow 1.5s ease-in-out infinite;
       z-index: -1;
-      opacity: 0.9; /* Increased opacity for visibility */
+      opacity: 0.9; /* High visibility */
     }
     .logo-grid {
       display: flex;
@@ -109,9 +107,9 @@
       background: #f48c06;
     }
     @keyframes toxic-glow {
-      0% { box-shadow: 0 0 20px #355E3B, 0 0 30px #2F4F2F; }
-      50% { box-shadow: 0 0 40px #355E3B, 0 0 50px #2F4F2F; }
-      100% { box-shadow: 0 0 20px #355E3B, 0 0 30px #2F4F2F; }
+      0% { box-shadow: 0 0 25px #355E3B, 0 0 35px #2F4F2F; }
+      50% { box-shadow: 0 0 50px #355E3B, 0 0 60px #2F4F2F; }
+      100% { box-shadow: 0 0 25px #355E3B, 0 0 35px #2F4F2F; }
     }
   </style>
 </head>
@@ -132,3 +130,90 @@
   </div>
 </body>
 </html>
+```
+
+- **How to Use**:
+  1. Save the logo as `TDlogo.png` and resize to ~200x200px (use Canva or Photopea).
+  2. Resize the other logos: `WBSTheDiggemClothingLogo001.png`, `WBSTheDiggemGamingLogo001.png`, `WBSTheDiggemyoutubeLogo001.png`, `WBSArtifactedThreadsLogo001.png` to ~100x100px.
+  3. Sign up for **Mailchimp** (free tier) and replace `https://your-mailchimp-form-url` with your form’s action URL.
+  4. Replace `https://your-podcast-link` with your podcast URL (e.g., Buzzsprout or Spotify—please provide, though it’s removed; add back if needed).
+  5. Adjust `<a>` tag URLs if needed:
+     - `https://www.amazon.com/s?rh=n%3A7141123011%2Cp_4%3AThe%2BDiggem%2BClothing&ref=bl_sl_s_ap_web_7141123011`: The Diggem Clothing Amazon Merch.
+     - `https://www.youtube.com/@TheDiggemGaming`: Gaming channel.
+     - `https://www.youtube.com/@TheDiggemOfficial`: Main YouTube.
+     - `https://www.amazon.com/s?rh=n%3A7141123011%2Cp_4%3AArtifacted%2BThreads&ref=bl_sl_s_ap_web_7141123011`: Artifacted Threads Amazon Merch.
+  6. Upload all logos (including `TDlogo.png`) and `index.html` to EasyWP via Dashboard > EasyWP > File Manager or FTP.
+  7. Test on mobile/desktop (ensure the toxic green glow is visible behind all logos, grid logos are clickable, and the layout is balanced).
+  8. After uploading, test the Facebook preview using the Facebook Sharing Debugger (https://developers.facebook.com/tools/debug/) by entering `https://thediggem.com` and clicking “Debug” to recrawl the page. If the Artifacted Threads logo still appears, verify the `og:image` URL is correct and accessible.
+- **Features**: Static `TDlogo.png` as a heading with OG meta tag and toxic green glow, clickable grid logos with enhanced toxic green sludge pulsating effect, newsletter signup, no "The Diggem" text.
+- **Timeline**: Launch by 06:00 AM CDT (2 hours from now) if you start EasyWP setup now.
+
+#### Notes on Fixes
+- **Enhanced Green Glow**:
+  - Switched to a solid `#2F4F2F` background for the pseudo-elements to provide a base color, with the `toxic-glow` animation adding pulsating shadows in `#355E3B` and `#2F4F2F`.
+  - Increased `box-shadow` range to 25px to 60px for a more dramatic effect.
+  - Set `opacity: 0.9` and expanded the padding area (top/left/right/bottom: -20px) to ensure the glow surrounds the logos.
+  - If the glow is still not visible after uploading, it could be due to the logo images having opaque backgrounds or browser rendering issues. Ensure all logos are transparent PNGs, and test in incognito mode or different browsers (e.g., Chrome, Firefox). Share a screenshot if it persists.
+- **Facebook Preview Fix**:
+  - The `og:image` URL is set to `https://thediggem.com/TDlogo.png`, but this must be updated to the actual hosted path (e.g., `https://thediggem.com/images/TDlogo.png`) after uploading. If the file isn’t accessible or the URL is incorrect, Facebook will revert to scraping other images (e.g., Artifacted Threads). After uploading, use the Facebook Sharing Debugger to force a recrawl.
+  - Added optional `og:image:width` and `og:image:height` meta tags (1200x630) to specify ideal dimensions, though this is secondary to ensuring the image URL works.
+
+#### 3. **Full Site Development**
+- **Platform**: **EasyWP (WordPress)** (~$3.88/month) with **Astra** theme (free).
+- **Site Structure**:
+  - **Home**: Hero with `TDlogo.png` as a static heading with toxic green glow, clickable buttons to YouTube, Amazon Merch, Instagram. Embed @TheDiggemOfficial video.
+  - **Shop**: Showcase Amazon Merch for The Diggem and Artifacted Threads with mockups linked to their URLs. Use `WBSTheDiggemClothingLogo001.png`.
+  - **Portfolio**: Gallery with **Envira Gallery** (~$29/year), featuring `WBSArtifactedThreadsLogo001.png` for ARG.
+  - **Content**: Embed @TheDiggemOfficial and @TheDiggemGaming playlists with **Smash Balloon** (~$49/year). Use `WBSTheDiggemGamingLogo001.png` and `WBSTheDiggemyoutubeLogo001.png`. Add podcast if URL provided.
+  - **About**: “Texas gothic streetwear rebellion by Daniel Strayhorn.” (No "The Diggem" text.)
+  - **Contact Us**: Form via **WPForms** (free) linked to `info@thediggem.com`.
+- **Features**:
+  - **Search Bar**: WordPress widget or **SearchWP** (~$99/year).
+  - **Newsletter Signup**: Mailchimp in footer/popup.
+  - **Social Integration**: Embed Instagram and YouTube via Smash Balloon.
+  - **Animations**: Toxic green sludge glow for all logos/buttons. ARG puzzles with clickable SVGs.
+- **SEO**:
+  - Keywords: “The Diggem Clothing,” “Artifacted Threads,” “Texas toxic streetwear.”
+  - Meta description: “The Diggem: Texas-inspired toxic streetwear and podcasts. Shop at thediggem.com! 🔥”
+  - Alt text: “The Diggem TD Logo,” “WBS Artifacted Threads Logo,” etc.
+
+#### 4. **Content and Monetization**
+- **Product Pages**: “Molotov Heart Tank Top: Texas toxic edge. Shop on Amazon!” with mockups.
+- **Content**: Embed YouTube playlists, blog, podcast (awaiting URL).
+- **Monetization**: Amazon Merch, Amazon Associates, YouTube ads, podcast sponsorships, Patreon.
+
+#### 5. **Technical Setup (Immediate Action, 04:00 AM CDT)**
+- **Hosting**: Activate **EasyWP** (~$3.88/month):
+  1. Log into Namecheap, go to “Hosting List,” select EasyWP Starter.
+  2. Link `thediggem.com`, install WordPress (~30 minutes).
+- **SSL**: Free with EasyWP.
+- **Email**: `info@thediggem.com` (~$9.88/year).
+- **Speed**: Compress logos with **TinyPNG** (free).
+- **Analytics**: **Google Analytics** (free).
+
+#### 6. **Timeline and Budget**
+- **Today (Aug 24, 2025, 04:00 AM CDT)**: Launch “Under Construction” by 06:00 AM CDT.
+- **Month 1**: Build Home, Shop, Contact Us.
+- **Month 2**: Add Portfolio, Content, ARG puzzles.
+- **Budget**: ~$13.76/year (EasyWP + email), optional plugins (~$49-99/year).
+
+#### 7. **Promotion**
+- Post: “The Diggem’s toxic Texas hub is live! Visit thediggem.com. 🔥 #TheDiggemClothing”
+- Add `thediggem.com` to channels.
+
+### Clarifications Needed
+- **Green Glow Visibility**: After uploading, if the green glow is still not visible, please share a screenshot or describe what you see (e.g., no effect, too faint), and I’ll adjust further (e.g., increase `box-shadow` size or add a solid background).
+- **New Logo Details**: Confirm the design of `TDlogo.png` (e.g., colors, aspect ratio) if it differs, and adjust `max-width` if needed.
+- **Podcast URL**: Please provide the URL for episodes like “The Haunting of the Alamo” if you want it added back.
+- **WBS Context**: Does “WBS” signify a sub-brand or ARG? Should each logo link to a specific page?
+- **Link Adjustments**: Confirm or update the grid logo URLs.
+- **Issues**: Any Namecheap/EasyWP challenges?
+
+### Next Steps (Immediate, 04:00 AM CDT)
+1. **Set up EasyWP**: Start now (takes ~1 hour). Activate and install WordPress.
+2. **Create Mailchimp Account**: Update the artifact with the form URL.
+3. **Resize Logos**: Resize `TDlogo.png` to ~200x200px, others to ~100x100px, and upload with `index.html` to EasyWP.
+4. **Set up Email**: Configure `info@thediggem.com`.
+5. **Launch and Promote**: Upload by 06:00 AM CDT, post on Instagram/YouTube, and debug on Facebook.
+
+Share feedback on the green glow, the podcast URL, or any tweaks, and I’ll refine the plan! Let’s make `thediggem.com` a toxic green Texas standout by 06:00 AM! 🔥

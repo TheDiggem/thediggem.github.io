@@ -29,7 +29,8 @@
     }
     .logo-primary {
       max-width: 200px;
-      margin-bottom: 10px;
+      margin-bottom: 20px;
+      animation: neon-glow 2s ease-in-out infinite;
     }
     .logo-secondary {
       max-width: 100px;
@@ -56,14 +57,6 @@
       justify-content: center;
       gap: 10px;
       margin-bottom: 20px;
-    }
-    h1 {
-      font-size: 3.5em;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      color: #f48c06; /* Neon orange for legibility */
-      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Depth for readability */
-      font-family: 'Bebas Neue', sans-serif;
     }
     p {
       font-family: 'Montserrat', sans-serif;
@@ -104,6 +97,11 @@
       50% { box-shadow: 0 0 20px #355E3B, 0 0 30px #2F4F2F; }
       100% { box-shadow: 0 0 10px #355E3B, 0 0 20px #2F4F2F; }
     }
+    @keyframes neon-glow {
+      0% { filter: drop-shadow(0 0 10px #f48c06); }
+      50% { filter: drop-shadow(0 0 20px #f48c06); }
+      100% { filter: drop-shadow(0 0 10px #f48c06); }
+    }
   </style>
 </head>
 <body>
@@ -115,7 +113,6 @@
       <a href="https://www.youtube.com/@TheDiggemOfficial" target="_blank"><img src="WBSTheDiggemyoutubeLogo001.png" class="logo-secondary" alt="WBS The Diggem YouTube Logo"></a>
       <a href="https://www.amazon.com/s?rh=n%3A7141123011%2Cp_4%3AArtifacted%2BThreads&ref=bl_sl_s_ap_web_7141123011" target="_blank"><img src="WBSArtifactedThreadsLogo001.png" class="logo-secondary" alt="WBS Artifacted Threads Logo"></a>
     </div>
-    <h1>The Diggem</h1>
     <p>Unleash Your Edge. Coming Soon! 🔥</p>
     <form class="signup-form" action="https://your-mailchimp-form-url" method="post">
       <input type="email" placeholder="Enter your email for updates" required>

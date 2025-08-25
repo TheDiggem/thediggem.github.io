@@ -3,15 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta property="og:title" content="The Diggem | Coming Soon">
-  <meta property="og:description" content="Unleash Your Edge with Texas-inspired toxic streetwear and podcasts. Shop at thediggem.com!">
-  <meta property="og:image" content="https://thediggem.com/TDlogo.png"> <!-- Update to hosted URL after upload -->
+  <meta property="og:title" content="The Diggem | Unleash Your Edge">
+  <meta property="og:description" content="Unleash Your Edge with Texas-inspired toxic streetwear, podcasts, and bold ideas. Explore our take on parenting licenses and shop at thediggem.com!">
+  <meta property="og:image" content="https://thediggem.com/TDlogo.png">
   <meta property="og:url" content="https://thediggem.com">
   <meta property="og:type" content="website">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
-  <title>The Diggem | Coming Soon</title>
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat&display=swap" rel="stylesheet">
+  <title>The Diggem | Unleash Your Edge</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat&family=Impact&display=swap" rel="stylesheet">
   <style>
     body {
       margin: 0;
@@ -41,11 +41,11 @@
       left: -25px;
       right: -25px;
       bottom: -25px;
-      background-color: #2F4F2F; /* Solid toxic green base */
+      background-color: #2F4F2F;
       border-radius: 50%;
       animation: toxic-glow 1.5s ease-in-out infinite;
       z-index: -1;
-      opacity: 0.85; /* Visible but not overpowering */
+      opacity: 0.85;
     }
     .logo-secondary {
       max-width: 100px;
@@ -59,17 +59,17 @@
       left: -25px;
       right: -25px;
       bottom: -25px;
-      background-color: #2F4F2F; /* Solid toxic green base */
+      background-color: #2F4F2F;
       border-radius: 50%;
       animation: toxic-glow 1.5s ease-in-out infinite;
       z-index: -1;
-      opacity: 0.85; /* Visible but not overpowering */
+      opacity: 0.85;
     }
     .logo-grid {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      gap: 15px; /* Increased for better spacing */
+      gap: 15px;
       margin-bottom: 20px;
     }
     p {
@@ -106,6 +106,56 @@
     button:hover {
       background-color: #f48c06;
     }
+    .article-link {
+      position: relative;
+      display: inline-block;
+      margin-top: 16px;
+    }
+    .article-button {
+      background-color: #2F4F2F;
+      color: #fff;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 0;
+      cursor: pointer;
+      font-family: 'Impact', sans-serif;
+      font-size: 1.3em;
+      letter-spacing: 0.05em;
+      position: relative;
+      transition: background-color 0.3s, transform 0.2s;
+    }
+    .article-button:hover {
+      background-color: #4CAF50;
+      transform: scale(1.05);
+    }
+    .article-button::before, .article-button::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(45deg, #355E3B, #2F4F2F);
+    }
+    .article-button::before {
+      top: -4px;
+      clip-path: polygon(0 0, 10% 100%, 90% 100%, 100% 0);
+    }
+    .article-button::after {
+      bottom: -4px;
+      clip-path: polygon(0 100%, 10% 0, 90% 0, 100% 100%);
+    }
+    .article-link::before {
+      content: '';
+      position: absolute;
+      top: -12px;
+      left: -12px;
+      right: -12px;
+      bottom: -12px;
+      background-color: #2F4F2F;
+      animation: toxic-glow 1.5s ease-in-out infinite;
+      z-index: -1;
+      opacity: 0.85;
+    }
     @keyframes toxic-glow {
       0% { box-shadow: 0 0 30px #355E3B, 0 0 40px #2F4F2F; }
       50% { box-shadow: 0 0 60px #355E3B, 0 0 70px #2F4F2F; }
@@ -127,6 +177,9 @@
       <input type="email" placeholder="Enter your email for updates" required>
       <button type="submit">Join the Rebellion</button>
     </form>
+    <a href="https://thediggem.github.io/parenting-license.html" class="article-link">
+      <button class="article-button">Think parenting’s a free-for-all? Read this — A Diggem Original</button>
+    </a>
   </div>
 </body>
 </html>

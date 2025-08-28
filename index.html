@@ -28,6 +28,7 @@
     .container {
       padding: 20px;
       max-width: 600px;
+      position: relative;
     }
     .logo-primary {
       max-width: 200px;
@@ -41,11 +42,11 @@
       left: -25px;
       right: -25px;
       bottom: -25px;
-      background-color: #2F4F2F;
+      background-color: #3C4A3C;
       border-radius: 50%;
       animation: toxic-glow 1.5s ease-in-out infinite;
       z-index: -1;
-      opacity: 0.85;
+      opacity: 0.65;
     }
     .logo-secondary {
       max-width: 100px;
@@ -59,11 +60,11 @@
       left: -25px;
       right: -25px;
       bottom: -25px;
-      background-color: #2F4F2F;
+      background-color: #3C4A3C;
       border-radius: 50%;
       animation: toxic-glow 1.5s ease-in-out infinite;
       z-index: -1;
-      opacity: 0.85;
+      opacity: 0.65;
     }
     .logo-grid {
       display: flex;
@@ -110,61 +111,109 @@
       position: relative;
       display: inline-block;
       margin-top: 16px;
+      text-decoration: none;
     }
     .article-button {
-      background-color: #2F4F2F;
+      background: linear-gradient(135deg, #4B4B4B, #2E2E2E);
       color: #fff;
-      padding: 12px 24px;
-      border: none;
-      border-radius: 0;
+      padding: 14px 28px;
+      border: 2px solid #6E6E6E;
+      border-radius: 8px;
       cursor: pointer;
-      font-family: 'Impact', sans-serif;
-      font-size: 1.3em;
-      letter-spacing: 0.05em;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.6em;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
       position: relative;
-      transition: background-color 0.3s, transform 0.2s;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
     }
     .article-button:hover {
-      background-color: #4CAF50;
-      transform: scale(1.05);
-    }
-    .article-button::before, .article-button::after {
-      content: '';
-      position: absolute;
-      left: 0;
-      right: 0;
-      height: 4px;
-      background: linear-gradient(45deg, #355E3B, #2F4F2F);
+      background: linear-gradient(135deg, #6E6E6E, #4B4B4B);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.7);
+      border-color: #f48c06;
+      color: #f48c06;
     }
     .article-button::before {
-      top: -4px;
-      clip-path: polygon(0 0, 10% 100%, 90% 100%, 100% 0);
-    }
-    .article-button::after {
-      bottom: -4px;
-      clip-path: polygon(0 100%, 10% 0, 90% 0, 100% 100%);
-    }
-    .article-link::before {
       content: '';
       position: absolute;
-      top: -12px;
-      left: -12px;
-      right: -12px;
-      bottom: -12px;
-      background-color: #2F4F2F;
-      animation: toxic-glow 1.5s ease-in-out infinite;
+      top: -10px;
+      left: -10px;
+      right: -10px;
+      bottom: -10px;
+      background: linear-gradient(135deg, rgba(110, 110, 110, 0.2), rgba(46, 46, 46, 0.2));
+      animation: metallic-pulse 2s ease-in-out infinite;
       z-index: -1;
-      opacity: 0.85;
+      border-radius: 12px;
+    }
+    .twitch-link {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      text-decoration: none;
+    }
+    .twitch-button {
+      background: #9146FF;
+      color: #fff;
+      padding: 10px;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1em;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      width: 80px;
+      height: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 10px rgba(145, 70, 255, 0.5);
+    }
+    .twitch-button:hover {
+      background: #772CE8;
+      transform: scale(1.1);
+      box-shadow: 0 0 20px rgba(145, 70, 255, 0.8);
+    }
+    .twitch-button::before {
+      content: '';
+      position: absolute;
+      top: -5px;
+      left: -5px;
+      right: -5px;
+      bottom: -5px;
+      background: radial-gradient(circle, rgba(145, 70, 255, 0.3), transparent);
+      animation: twitch-glow 1.5s ease-in-out infinite;
+      z-index: -1;
+      border-radius: 50%;
+    }
+    @keyframes metallic-pulse {
+      0% { box-shadow: 0 0 10px rgba(110, 110, 110, 0.3), 0 0 20px rgba(46, 46, 46, 0.3); }
+      50% { box-shadow: 0 0 20px rgba(110, 110, 110, 0.5), 0 0 30px rgba(46, 46, 46, 0.5); }
+      100% { box-shadow: 0 0 10px rgba(110, 110, 110, 0.3), 0 0 20px rgba(46, 46, 46, 0.3); }
     }
     @keyframes toxic-glow {
-      0% { box-shadow: 0 0 30px #355E3B, 0 0 40px #2F4F2F; }
-      50% { box-shadow: 0 0 60px #355E3B, 0 0 70px #2F4F2F; }
-      100% { box-shadow: 0 0 30px #355E3B, 0 0 40px #2F4F2F; }
+      0% { box-shadow: 0 0 20px #4A5A4A, 0 0 30px #3C4A3C; }
+      50% { box-shadow: 0 0 40px #4A5A4A, 0 0 50px #3C4A3C; }
+      100% { box-shadow: 0 0 20px #4A5A4A, 0 0 30px #3C4A3C; }
+    }
+    @keyframes twitch-glow {
+      0% { box-shadow: 0 0 10px rgba(145, 70, 255, 0.5); }
+      50% { box-shadow: 0 0 20px rgba(145, 70, 255, 0.8); }
+      100% { box-shadow: 0 0 10px rgba(145, 70, 255, 0.5); }
     }
   </style>
 </head>
 <body>
   <div class="container">
+    <a href="https://thediggem.github.io/Twitch" class="twitch-link">
+      <button class="twitch-button">Twitch Live</button>
+    </a>
     <img src="TDlogo.png" class="logo-primary" alt="The Diggem TD Logo">
     <div class="logo-grid">
       <a href="https://www.amazon.com/s?rh=n%3A7141123011%2Cp_4%3AThe%2BDiggem%2BClothing&ref=bl_sl_s_ap_web_7141123011" target="_blank"><img src="WBSTheDiggemClothingLogo001.png" class="logo-secondary" alt="WBS The Diggem Clothing Logo"></a>
@@ -173,10 +222,6 @@
       <a href="https://www.amazon.com/s?rh=n%3A7141123011%2Cp_4%3AArtifacted%2BThreads&ref=bl_sl_s_ap_web_7141123011" target="_blank"><img src="WBSArtifactedThreadsLogo001.png" class="logo-secondary" alt="WBS Artifacted Threads Logo"></a>
     </div>
     <p>Unleash Your Edge. Coming Soon! 🔥</p>
-    <form class="signup-form" action="https://your-mailchimp-form-url" method="post">
-      <input type="email" placeholder="Enter your email for updates" required>
-      <button type="submit">Join the Rebellion</button>
-    </form>
     <a href="https://thediggem.github.io/parenting-license.html" class="article-link">
       <button class="article-button">Think parenting’s a free-for-all? Read this — A Diggem Original</button>
     </a>
@@ -186,6 +231,10 @@
     <a href="https://thediggem.github.io/dundee-knife-incident-2025.html" class="article-link">
       <button class="article-button">Dundee 2025: A Child’s Brave Stand — A Diggem Original</button>
     </a>
+    <form class="signup-form" action="https://your-mailchimp-form-url" method="post">
+      <input type="email" placeholder="Enter your email for updates" required>
+      <button type="submit">Join the Rebellion</button>
+    </form>
   </div>
 </body>
 </html>

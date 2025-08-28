@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>TheDiggem — Live on Twitch</title>
+  <meta name="description" content="Watch TheDiggem's live Twitch stream with chat. Mobile-friendly layout." />
+  <meta name="color-scheme" content="dark light">
+  <style>
+    :root { 
+      --bg: #18181b; 
+      --panel: #232329; 
+      --fg: #fff; 
+      --muted: #c9c9d1; 
+      --radius: 12px; 
+      --gap: 20px; 
+      --maxw: 1400px; 
+      --twitch-purple: #9146ff;
+    }
+    @media (prefers-color-scheme: light) {
+      :root {
+        --bg: #fff;
+        --panel: #f5f5f5;
+        --fg: #000;
+        --muted: #666;
+      }
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background: var(--bg); color: var(--fg);
+    }
+    header { padding: 16px 20px 0; }
+    h1 { margin: 0 0 6px; font-size: clamp(1.2rem, 2.8vw, 1.8rem); }
+    p.lead { margin: 0 20px 16px; color: var(--muted); font-size: .95rem; }
+    .container {
+      display: grid; grid-template-columns: 2fr 1fr; gap: var(--gap);
+      max-width: var(--maxw); margin: 0 auto; padding: 20px;
+    }
+    .card {
+      background: var(--panel); border-radius: var(--radius); overflow: hidden;
+      border: 1px solid var(--twitch-purple);
+    }
+    iframe { display: block; width: 100%; height: 100%; border: 0; }
+    .player { aspect-ratio: 16 / 9; }
+    .chat { min-height: 500px; }
+    .offline {
+      margin: 0 20px 24px; background: var(--panel); padding: 14px 16px;
+      border-radius: 10px; color: var(--muted); border: 1px dashed #3a3a46; font-size: .95rem;
+      display: none;
+    }
+    .offline a { color: var(--twitch-purple); text-decoration: none; }
+    .offline a:hover { text-decoration: underline; }
+    .offline img { max-width: 100%; border-radius: var(--radius); margin-top: 10px; }
+    .chat-toggle {
+      background: var(--twitch-purple); color: #fff; border: none; padding: 8px 16px;
+      border-radius: var(--radius); cursor: pointer; margin-bottom: 10px;
+    }
+    .chat.hidden { display: none; }
+    @media (max-width: 900px) {
+      .container { grid-template-columns: 1fr; }
+      .chat { min-height: 420px; }
+      .chat-toggle { display: block; margin: 10px auto; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Live on Twitch — @TheDiggem</h1>
+    <p class="lead">If I’m live, the player appears below. Chat is on the right (or below on mobile).</p>
+  </header>
+  <div class="container">
+    <!-- Player -->
+    <section class="card player" aria-label="Twitch Player">
+      <!--
+        IMPORTANT: Include EVERY domain you serve this page from as a separate &parent=.
+        Pre-filled for thediggem.com, www.thediggem.com, and thediggem.github.io.
+      -->
+      <iframe
+        id="twitch-player"
+        src="https://player.twitch.tv/?channel=thediggem&parent=thediggem.com&parent=www.thediggem.com&parent=thediggem.github.io&autoplay=true&muted=false"
+        allow="fullscreen; picture-in-picture"
+        title="Twitch Player: thediggem"
+      ></iframe>
+    </section>
+    <!-- Chat (remove this whole section if you don’t want chat) -->
+    <aside class="card chat" aria-label="Twitch Chat">
+      <button class="chat-toggle" onclick="toggleChat()">Hide Chat</button>
+      <iframe
+        src="https://www.twitch.tv/embed/thediggem/chat?parent=thediggem.com&parent=www.thediggem.com&parent=thediggem.github.io"
+        title="Twitch Chat: thediggem"
+      ></iframe>
+    </aside>
+  </div>
+  <!-- Offline fallback -->
+  <div class="offline" id="offline-message">
+    Not seeing a stream? I might be offline. Visit my
+    <a href="https://www.twitch.tv/thediggem" target="_blank" rel="noopener">Twitch channel</a>
+    or check recent <a href="https://www.twitch.tv/thediggem/videos" target="_blank" rel="noopener">VODs</a>.
+    <div id="vod-fallback"></div>
+  </div>
+
+  <script>
+    const channel = 'thediggem';
+    const gqlEndpoint = 'https://gql.twitch.tv/gql';
+    const clientId = 'kimne78kx3ncx6bzuz2mvvaakxmier';
+    const playerIframe = document.getElementById('twitch-player');
+    const offlineDiv = document.getElementById('offline-message');
+    const vodFallback = document.getElementById('vod-fallback');
+    const chatSection = document.querySelector('.chat');
+    const playerSection = document.querySelector('.player');
+
+    // Dynamic height sync for chat
+    function syncChatHeight() {
+      if (window.innerWidth > 900) {
+        chatSection.style.height = `${playerSection.offsetHeight}px`;
+      } else {
+        chatSection.style.height = 'auto';
+      }
+    }
+    window.addEventListener('resize', syncChatHeight);
+    window.addEventListener('load', syncChatHeight);
+
+    // Collapsible chat with localStorage
+    function toggleChat() {
+      chatSection.classList.toggle('hidden');
+      localStorage.setItem('chatHidden', chatSection.classList.contains('hidden'));
+      const button = document.querySelector('.chat-toggle');
+      button.textContent = chatSection.classList.contains('hidden') ? 'Show Chat' : 'Hide Chat';
+    }
+    if (localStorage.getItem('chatHidden') === 'true') {
+      toggleChat();
+    }
+
+    // Check if live using GQL
+    async function checkIfLive() {
+      const query = `query { user(login: "${channel}") { stream { id } } }`;
+      const response = await fetch(gqlEndpoint, {
+        method: 'POST',
+        headers: { 'Client-Id': clientId, 'Content-Type': 'application/json' },
+        body: JSON.stringify({ query })
+      });
+      const data = await response.json();
+      return data.data.user.stream !== null;
+    }
+
+    // Get latest VOD
+    async function getLatestVOD() {
+      const query = `query { user(login: "${channel}") { videos(first: 1, sort: TIME) { edges { node { id thumbnailURL title } } } } }`;
+      const response = await fetch(gqlEndpoint, {
+        method: 'POST',
+        headers: { 'Client-Id': clientId, 'Content-Type': 'application/json' },
+        body: JSON.stringify({ query })
+      });
+      const data = await response.json();
+      const vod = data.data.user.videos.edges[0]?.node;
+      if (vod) {
+        return vod;
+      }
+      return null;
+    }
+
+    // Initialize
+    async function init() {
+      const isLive = await checkIfLive();
+      if (!isLive) {
+        const vod = await getLatestVOD();
+        if (vod) {
+          playerIframe.src = `https://player.twitch.tv/?video=${vod.id}&parent=thediggem.com&parent=www.thediggem.com&parent=thediggem.github.io&autoplay=true&muted=false`;
+          vodFallback.innerHTML = `<p>Playing latest VOD: ${vod.title}</p><img src="${vod.thumbnailURL}" alt="Latest VOD thumbnail">`;
+        } else {
+          playerIframe.style.display = 'none';
+        }
+        offlineDiv.style.display = 'block';
+      }
+      syncChatHeight();
+    }
+
+    init();
+  </script>
+</body>
+</html>

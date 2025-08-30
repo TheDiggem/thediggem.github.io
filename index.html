@@ -1,100 +1,58 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/styles.css?v=2">
+  <meta charset="utf-8" />
+  <title>The Diggem</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css?v=2">
 </head>
 <body>
-    <header>
-        <div class="container">
-            <h1 class="logo">The Diggem</h1>
-            <nav>
-                <ul>
-                    <li><a href="/index.html">Home</a></li>
-                    <li><a href="/blog/">Blog</a></li>
-                    <li><a href="/about.html">About</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
-    <section class="hero">
-        <div class="container">
-            <h1>Unleash Your Edge</h1>
-            <p>Insights on parenting, society, technology, and more. Join the conversation and shop exclusive merch.</p>
-            <div class="ctas">
-                <a href="/blog/" class="btn">Read the Blog</a>
-                <a href="https://www.amazon.com/s?rh=n%3A7141123011%2Cp_4%3AThe%2BDiggem%2BClothing&ref=bl_sl_s_ap_web_7141123011" class="btn">Shop</a>
-            </div>
-        </div>
+  <div class="container">
+    <nav>
+      <div class="brand"><a href="/">The Diggem</a></div>
+      <div class="links">
+        <a href="/about.html">About</a>
+        <a href="/blog/">Blog</a>
+        <a href="https://youtube.com/…" target="_blank" rel="noopener">YouTube</a>
+        <a href="/shop/">Clothing</a>
+      </div>
+    </nav>
+
+    <section class="hero card">
+      <h1>Welcome to The Diggem</h1>
+      <p>News, analysis, and projects. Fresh posts below—dive in.</p>
+      <a class="button" href="/blog/">Read the Blog</a>
     </section>
-    <section class="link-cards">
-        <div class="container">
-            <h2>Explore More</h2>
-            <div class="cards">
-                <a href="https://www.twitch.tv/thediggem" class="card">
-                    <img src="/assets/img/card-twitch.jpg" alt="Twitch channel thumbnail">
-                    <span>Twitch</span>
-                </a>
-                <a href="https://www.youtube.com/@TheDiggemGaming" class="card">
-                    <img src="/assets/img/card-yt-gaming.jpg" alt="YouTube Gaming channel thumbnail">
-                    <span>YouTube Gaming</span>
-                </a>
-                <a href="https://www.youtube.com/@TheDiggemOfficial" class="card">
-                    <img src="/assets/img/card-yt-official.jpg" alt="YouTube Official channel thumbnail">
-                    <span>YouTube Official</span>
-                </a>
-                <a href="https://www.amazon.com/s?rh=n%3A7141123011%2Cp_4%3AThe%2BDiggem%2BClothing&ref=bl_sl_s_ap_web_7141123011" class="card">
-                    <img src="/assets/img/card-shop.jpg" alt="The Diggem Clothing shop thumbnail">
-                    <span>Shop Clothing</span>
-                </a>
-                <a href="https://www.amazon.com/s?rh=n%3A7141123011%2Cp_4%3AArtifacted%2BThreads&ref=bl_sl_s_ap_web_7141123011" class="card">
-                    <img src="/assets/img/card-artifacted.jpg" alt="Artifacted Threads shop thumbnail">
-                    <span>Artifacted Threads</span>
-                </a>
-            </div>
-        </div>
+
+    <section style="margin-top:20px">
+      <div class="grid">
+        <article class="card">
+          <h2>Newest: ChatGPT AI Lawsuit Case</h2>
+          <p>Parenting, AI, and a high-profile legal fight—what it means next.</p>
+          <a href="/blog/parenting-ai-teen-case.html">Read the article →</a>
+        </article>
+
+        <article class="card">
+          <h2>Clothing & Merch</h2>
+          <p>Support the site and look sharp.</p>
+          <a href="/shop/" class="button">Shop now</a>
+        </article>
+
+        <article class="card">
+          <h2>Watch on YouTube</h2>
+          <p>Deep dives, demos, and updates.</p>
+          <a href="https://youtube.com/…" target="_blank" rel="noopener">Open channel →</a>
+        </article>
+      </div>
     </section>
-    <section class="recent-posts">
-        <div class="container">
-            <h2>Recent Posts</h2>
-            <div class="posts">
-                <article class="post-card">
-                    <h3><a href="/blog/parenting-ai-teen-case.html">Parenting an AI-Native Teen: A Case Study</a></h3>
-                    <p class="date">August 30, 2025</p>
-                    <p class="teaser">Explore the unique challenges of raising a teenager immersed in AI technology from birth. This case study offers practical insights and strategies for parents navigating the digital age.</p>
-                </article>
-                <article class="post-card">
-                    <h3><a href="/2025-08-27-minneapolis-church-shooting.html">Minneapolis Shooting: Protect the Children, Not the Politics</a></h3>
-                    <p class="date">August 27, 2025</p>
-                    <p class="teaser">On August 27, 2025, a gunman tore through Annunciation Catholic Church in Minneapolis during a quiet morning Mass. Two children—an 8-year-old and a 10-year-old—were gunned down, their lives stolen in seconds.</p>
-                </article>
-                <article class="post-card">
-                    <h3><a href="/parenting-license.html">Parenting Licenses: Protecting Children, Protecting Society</a></h3>
-                    <p class="date">August 25, 2025</p>
-                    <p class="teaser">Every year in America, hundreds of thousands of children are born into homes that will not nurture them, but break them. Some grow up neglected, abused, or abandoned.</p>
-                </article>
-                <article class="post-card">
-                    <h3><a href="/dundee-knife-incident-2025.html">Dundee Incident: A Child's Desperate Defense and the Limits of UK Law</a></h3>
-                    <p class="date">August 23, 2025</p>
-                    <p class="teaser">On August 23, 2025, a 14-year-old girl’s desperate act in Dundee, Scotland, sparked global debate. Filmed wielding a kitchen knife and hatchet to protect her younger sister from perceived danger, she became the center of the 2025 Dundee knife incident.</p>
-                </article>
-            </div>
-        </div>
-    </section>
+
     <footer>
-        <div class="container">
-            <p>&copy; 2025 The Diggem. All rights reserved.</p>
-            <div class="social-links">
-                <a href="https://www.twitch.tv/thediggem">Twitch</a>
-                <a href="https://www.youtube.com/@TheDiggemGaming">YouTube Gaming</a>
-                <a href="https://www.youtube.com/@TheDiggemOfficial">YouTube Official</a>
-                <a href="https://www.amazon.com/s?rh=n%3A7141123011%2Cp_4%3AThe%2BDiggem%2BClothing&ref=bl_sl_s_ap_web_7141123011">Shop Clothing</a>
-                <a href="https://www.amazon.com/s?rh=n%3A7141123011%2Cp_4%3AArtifacted%2BThreads&ref=bl_sl_s_ap_web_7141123011">Artifacted Threads</a>
-            </div>
-        </div>
+      © <span id="y"></span> The Diggem
     </footer>
+  </div>
+  <script>document.getElementById('y').textContent = new Date().getFullYear()</script>
 </body>
 </html>

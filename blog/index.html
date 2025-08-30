@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Blog — TheDiggem</title>
+  <meta name="description" content="Articles, case studies, and notes from TheDiggem." />
+  <link rel="stylesheet" href="/assets/css/styles.css" />
+</head>
+<body>
+  <!-- Header / Nav -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="/">TheDiggem</a>
+      <nav class="site-nav" aria-label="Primary">
+        <a href="/">Home</a>
+        <a aria-current="page" class="active" href="/blog/">Blog</a>
+        <a href="/about.html">About</a>
+        <a href="/contact.html">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero hero--sub">
+    <div class="container">
+      <h1>Blog</h1>
+      <p class="lead">Case studies, guides, and experiments—newest first.</p>
+    </div>
+  </section>
+
+  <!-- Posts -->
+  <main id="main" class="container content">
+    <ol class="post-list" reversed>
+      <!-- Newest article (yours) -->
+      <li class="post-card">
+        <article>
+          <header>
+            <h2 class="post-title">
+              <a href="/blog/parenting-ai-teen-case.html">Parenting an AI-Native Teen: A Case Study</a>
+            </h2>
+            <p class="post-meta">
+              <time datetime="2025-01-01">Jan 1, 2025</time> • 6–8 min read
+            </p>
+          </header>
+          <p class="post-excerpt">
+            A practical look at boundaries, digital literacy, and building trust when your kid’s best friend might be an LLM.
+          </p>
+          <p class="post-cta"><a class="button" href="/blog/parenting-ai-teen-case.html">Read article</a></p>
+        </article>
+      </li>
+
+      <!-- Example older post (replace or add more) -->
+      <li class="post-card">
+        <article>
+          <header>
+            <h2 class="post-title"><a href="/blog/dulce-protocol-vertical-slice.html">Dulce Protocol: Building a Vertical Slice</a></h2>
+            <p class="post-meta"><time datetime="2024-11-20">Nov 20, 2024</time> • 7 min read</p>
+          </header>
+          <p class="post-excerpt">
+            How the top-down prototype came together—spawns, doors, panels, and a miniboss without any engine bloat.
+          </p>
+          <p class="post-cta"><a class="button" href="/blog/dulce-protocol-vertical-slice.html">Read article</a></p>
+        </article>
+      </li>
+
+      <!-- Add more <li class="post-card">…</li> as you publish -->
+    </ol>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>© <span id="year"></span> TheDiggem — All rights reserved.</p>
+      <div class="social">
+        <a href="https://www.youtube.com/yourchannel" aria-label="YouTube">YouTube</a>
+        <a href="https://twitter.com/yourhandle" aria-label="Twitter">Twitter/X</a>
+        <a href="https://instagram.com/yourhandle" aria-label="Instagram">Instagram</a>
+      </div>
+    </div>
+  </footer>
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

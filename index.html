@@ -16,11 +16,13 @@
     h1 { font-size:clamp(28px, 5vw, 48px); margin:0 0 14px }
     p { color:#aab2c0; margin:0 0 28px }
     a.button {
-      display:inline-block; padding:12px 20px; margin:8px;
+      display:block; width:260px;
+      padding:14px 20px; margin:10px auto;
       border-radius:12px; text-decoration:none; font-weight:600;
       background:linear-gradient(90deg,#7dd3fc,#a78bfa);
-      color:#0e1116;
+      color:#0e1116; transition:0.2s ease;
     }
+    a.button:hover { transform:scale(1.05); }
     footer { position:absolute; bottom:18px; font-size:14px; color:#888 }
   </style>
 </head>
@@ -28,9 +30,10 @@
   <main>
     <h1>🚧 The Diggem</h1>
     <p>Website under construction. Check back soon!</p>
-    <a class="button" href="https://www.amazon.com/s?me=YOUR-STORE-ID" target="_blank" rel="noopener">
-      Visit My Amazon Merch
-    </a>
+    <a class="button" href="https://www.amazon.com/s?rh=n%3A7141123011%2Cp_4%3AThe%2BDiggem%2BClothing&ref=bl_sl_s_ap_web_7141123011" target="_blank" rel="noopener">Amazon Merch</a>
+    <a class="button" href="https://www.youtube.com/@TheDiggemGaming" target="_blank" rel="noopener">YouTube</a>
+    <a class="button" href="https://www.instagram.com/thediggem" target="_blank" rel="noopener">Instagram</a>
+    <a class="button" href="https://x.com/TheDiggem" target="_blank" rel="noopener">X (Twitter)</a>
   </main>
   <footer>© <span id="y"></span> The Diggem</footer>
   <script>document.getElementById("y").textContent=new Date().getFullYear()</script>

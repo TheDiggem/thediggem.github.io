@@ -7,7 +7,33 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/styles.css?v=2">
+  <style>
+    :root{
+      --bg:#0e1116; --card:#151922; --text:#e7e9ee; --muted:#aab2c0; --brand:#7dd3fc; --accent:#a78bfa;
+      --maxw:1100px; --rad:16px; --pad:20px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+    .container{max-width:var(--maxw);margin:0 auto;padding:24px}
+    nav{display:flex;gap:14px;align-items:center;justify-content:space-between;margin-bottom:24px}
+    nav a{color:var(--text);text-decoration:none;padding:8px 12px;border-radius:10px}
+    nav a:hover{background:#ffffff10}
+    .brand{font-weight:800;letter-spacing:.3px}
+    .grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+    .card{background:var(--card);border:1px solid #ffffff14;border-radius:var(--rad);padding:var(--pad)}
+    h1{font-size:clamp(28px,3.5vw,40px);line-height:1.2;margin:6px 0 12px}
+    h2{font-size:clamp(22px,2.2vw,28px);margin:0 0 8px}
+    p{margin:0 0 12px;color:var(--muted)}
+    .button{display:inline-block;padding:10px 14px;border-radius:12px;background:linear-gradient(90deg,var(--brand),var(--accent));color:#0b0d11;font-weight:700;text-decoration:none}
+    footer{margin-top:40px;color:var(--muted);font-size:14px}
+    .hero{padding:28px;border-radius:var(--rad);background:linear-gradient(180deg,#ffffff08,#ffffff03);border:1px solid #ffffff14}
+    .hero p{font-size:18px}
+    ul.links{list-style:none;padding:0;margin:0;display:flex;flex-wrap:wrap;gap:10px}
+    ul.links li a{display:inline-block;padding:10px 12px;border:1px solid #ffffff22;border-radius:12px;color:var(--text);text-decoration:none}
+    ul.links li a:hover{border-color:#ffffff55}
+    a{color:var(--brand)}
+  </style>
 </head>
 <body>
   <div class="container">
@@ -16,7 +42,7 @@
       <div class="links">
         <a href="/about.html">About</a>
         <a href="/blog/">Blog</a>
-        <a href="https://youtube.com/…" target="_blank" rel="noopener">YouTube</a>
+        <a href="https://youtube.com/" target="_blank" rel="noopener">YouTube</a>
         <a href="/shop/">Clothing</a>
       </div>
     </nav>
@@ -44,7 +70,7 @@
         <article class="card">
           <h2>Watch on YouTube</h2>
           <p>Deep dives, demos, and updates.</p>
-          <a href="https://youtube.com/…" target="_blank" rel="noopener">Open channel →</a>
+          <a href="https://youtube.com/" target="_blank" rel="noopener">Open channel →</a>
         </article>
       </div>
     </section>

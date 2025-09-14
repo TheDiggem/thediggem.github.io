@@ -1,312 +1,340 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>The Diggem</title>
-  <meta name="description" content="Gaming, Texas, politics, and the truths they don't want you to see." />
-
-  <!-- Open Graph / Facebook -->
-  <meta property="og:title" content="The Diggem" />
-  <meta property="og:description" content="Gaming, Texas, politics, and the truths they don't want you to see." />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://thediggem.github.io/" />
-  <meta property="og:image" content="https://thediggem.github.io/og-image.png" />
-
-  <!-- Twitter -->
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="The Diggem" />
-  <meta name="twitter:description" content="Gaming, Texas, politics, and the truths they don't want you to see." />
-  <meta name="twitter:image" content="https://thediggem.github.io/og-image.png" />
-
-  <link rel="canonical" href="https://thediggem.github.io/" />
-
-  <style>
-    :root{
-      --bg:#0b0b0c; --text:#f2f2f2; --muted:#b5b8bd;
-      --accent:#d9a441; --ring: rgba(217,164,65,.35);
-      --radius:18px;
-    }
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{margin:0;font-family:ui-sans-serif,system-ui,Segoe UI,Roboto,Inter,Arial,sans-serif;color:var(--text);
-      background:radial-gradient(1200px 800px at 50% -10%, rgba(255,255,255,.05), transparent 60%), var(--bg);}
-    body::before{content:"";position:fixed;inset:0;pointer-events:none;mix-blend-mode:soft-light;
-      background: repeating-linear-gradient(120deg, rgba(255,255,255,.02) 0 2px, transparent 2px 4px);}
-    a{color:inherit;text-decoration:none}
-    .container{max-width:1100px;margin:0 auto;padding:28px 18px 64px}
-    header{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
-    .brand{display:flex;flex-direction:column;gap:6px}
-    .brand h1{margin:0;letter-spacing:.08em;font-size:clamp(22px,4vw,32px)}
-    .tagline{color:var(--muted);font-size:clamp(12px,2.3vw,14px)}
-    .subnav{display:flex;gap:.5rem;flex-wrap:wrap;margin-top:.5rem}
-    .subnav a{background:#181a1e;border:1px solid #23262b;padding:.45rem .8rem;border-radius:999px;font-size:.85rem}
-    .subnav a.support{background:#3a2b10;border-color:#4a3614;color:#e8d2a6}
-    .cta-row{display:flex;gap:12px;flex-wrap:wrap}
-    .btn{display:inline-flex;align-items:center;gap:10px;padding:12px 16px;border-radius:999px;background:linear-gradient(180deg,#1a1c20,#121316);border:1px solid #2a2d33}
-    .btn.primary{border-color:#584318;background:linear-gradient(180deg,#2a2313,#13100a);}
-    .hero{padding:36px 0 10px}
-    .hero h2{font-size:clamp(26px,6.5vw,54px);margin:14px 0 6px;letter-spacing:.06em}
-    .hero p{margin:0;color:var(--muted)}
-    .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin-top:26px}
-    @media (min-width:760px){.grid{grid-template-columns:repeat(5,minmax(0,1fr));}}
-    .linkcard{position:relative;text-align:center;padding:16px 8px 14px;border-radius:var(--radius);background:linear-gradient(180deg,#15171a,#0f1012);border:1px solid #1e2025}
-    .icon-circle{width:88px;height:88px;margin:8px auto 10px;border-radius:50%;display:grid;place-items:center;color:#fff;font-weight:700;letter-spacing:.04em;
-      background:radial-gradient(60% 60% at 30% 30%, rgba(255,255,255,.15), rgba(255,255,255,0) 70%),linear-gradient(145deg,#202329,#0d0f12);
-      border:1px solid #2a2d33;}
-    .label{font-size:14px;font-weight:600}
-    .sublabel{font-size:12px;color:var(--muted);margin-top:2px}
-
-    .topic-section,.latest{margin-top:34px;padding:18px;border-radius:var(--radius);background:linear-gradient(180deg,#121317,#0f1012);border:1px solid #22242a}
-    .section-header{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:8px}
-    .section-header h3{margin:0 0 2px;font-size:18px;letter-spacing:.06em}
-    .see-all{font-size:12px;color:var(--muted);border:1px solid #24262c;padding:6px 10px;border-radius:999px;background:linear-gradient(180deg,#16181c,#101114)}
-
-    .posts{display:grid;grid-template-columns:1fr;gap:14px;margin-top:10px}
-    @media(min-width:760px){.posts{grid-template-columns:repeat(3,minmax(0,1fr));}}
-    .post-card{padding:14px;border-radius:12px;background:linear-gradient(180deg,#15171a,#111216);border:1px solid #24262c}
-    .post-card h4{margin:0 0 6px;font-size:16px}
-    .post-card p{margin:0 0 8px;color:var(--muted);font-size:14px}
-    .read-more{font-size:13px;text-decoration:underline}
-
-    .video-wrap{position:relative;padding-top:56.25%;border-radius:12px;overflow:hidden;background:#000;border:1px solid #262830}
-    .video-wrap iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
-
-    footer{margin-top:40px;color:var(--muted);font-size:13px;text-align:center}
-    .socials{display:flex;flex-wrap:wrap;gap:12px;margin-top:8px;justify-content:center}
-    .socials a{padding:8px 12px;border:1px solid #24262c;border-radius:999px;background:linear-gradient(180deg,#17191d,#101216)}
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DIGGEM | Streetwear Gaming Lifestyle</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.globe.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;700&display=swap');
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #0a0a0a;
+            color: #f5f5f5;
+        }
+        .diggem-font {
+            font-family: 'Bebas Neue', sans-serif;
+            letter-spacing: 2px;
+        }
+        .glow {
+            text-shadow: 0 0 10px #ff00ff, 0 0 20px #00ffff;
+        }
+        .bg-grid {
+            background-image: 
+                linear-gradient(rgba(255, 0, 255, 0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 0, 255, 0.1) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+    </style>
 </head>
-<body>
-  <div class="container">
-    <header>
-      <div class="brand">
-        <h1>THE DIGGEM</h1>
-        <div class="tagline" id="tagline">Gaming, Texas, and calling out the crap they don’t want you to see.</div>
-        <nav class="subnav" aria-label="Main">
-          <a href="index.html">Home</a>
-          <a href="gaming.html">Gaming</a>
-          <a href="politics.html">Politics</a>
-          <a href="trafficking.html">Trafficking &amp; Missing</a>
-          <a href="texas.html">Texas</a>
-          <a href="shop.html">Shop</a>
-          <a href="#contact">Contact</a>
-          <a href="https://www.buymeacoffee.com/thediggem" target="_blank" rel="noopener" class="support">Support</a>
-        </nav>
-      </div>
-      <nav class="cta-row" aria-label="Primary">
-        <a class="btn primary" href="#latest">Watch Latest Video</a>
-        <a class="btn" href="shop.html">Shop Merch</a>
-      </nav>
-    </header>
+<body class="min-h-screen">
+    <div id="vanta-bg" class="fixed inset-0 -z-10 opacity-20"></div>
+    
+    <!-- Navigation -->
+    <nav class="bg-black bg-opacity-80 backdrop-blur-md sticky top-0 z-50 border-b border-purple-500">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex justify-between items-center">
+                <a href="#" class="diggem-font text-2xl text-white hover:text-purple-400 transition">DIGGEM</a>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#" class="text-white hover:text-cyan-400 transition">HOME</a>
+                    <a href="#shop" class="text-white hover:text-cyan-400 transition">SHOP</a>
+                    <a href="#gaming" class="text-white hover:text-cyan-400 transition">GAMING</a>
+                    <a href="#blog" class="text-white hover:text-cyan-400 transition">BLOG</a>
+                    <a href="#about" class="text-white hover:text-cyan-400 transition">ABOUT</a>
+                </div>
+                <button class="md:hidden text-white">
+                    <i data-feather="menu"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
 
-    <section class="hero" aria-labelledby="intro-title">
-      <h2 id="intro-title">Missing persons, political lies, and the games that keep me sane.</h2>
-      <p>Start here. Click a tile below.</p>
+    <!-- Hero Section -->
+    <section class="min-h-screen flex items-center justify-center bg-grid">
+        <div class="container mx-auto px-4 text-center" data-aos="fade-up">
+            <h1 class="diggem-font text-6xl md:text-8xl mb-4 text-white glow">DIGGEM</h1>
+            <p class="text-xl md:text-2xl mb-8 text-gray-300 max-w-2xl mx-auto">
+                Where streetwear meets gaming culture. Wear the vibe, live the grind.
+            </p>
+            <div class="flex justify-center space-x-4">
+                <a href="#shop" class="bg-purple-600 hover:bg-cyan-600 text-white px-6 py-3 rounded-full font-bold transition transform hover:scale-105">
+                    SHOP NOW
+                </a>
+                <a href="#gaming" class="bg-transparent border-2 border-white hover:border-cyan-400 text-white px-6 py-3 rounded-full font-bold transition transform hover:scale-105">
+                    WATCH VIDS
+                </a>
+            </div>
+        </div>
     </section>
 
-    <!-- Top tiles (use Shop for both apparel brands for now) -->
-    <section class="grid" aria-label="Main links">
-      <a class="linkcard" href="shop.html">
-        <div class="icon-circle">AT</div>
-        <div class="label">Artifacted Threads</div>
-        <div class="sublabel">Apparel</div>
-      </a>
-      <a class="linkcard" href="shop.html">
-        <div class="icon-circle">DC</div>
-        <div class="label">Diggem Clothing</div>
-        <div class="sublabel">Shop</div>
-      </a>
-      <a class="linkcard" href="politics.html">
-        <div class="icon-circle">DL</div>
-        <div class="label">Digging Life</div>
-        <div class="sublabel">Podcast</div>
-      </a>
-      <a class="linkcard" href="gaming.html">
-        <div class="icon-circle">GO</div>
-        <div class="label">Game Over</div>
-        <div class="sublabel">YouTube</div>
-      </a>
-      <a class="linkcard" href="#contact">
-        <div class="icon-circle">✉</div>
-        <div class="label">Contact</div>
-        <div class="sublabel">Email me</div>
-      </a>
+    <!-- Shop Section -->
+    <section id="shop" class="py-20 bg-black bg-opacity-90">
+        <div class="container mx-auto px-4">
+            <h2 class="diggem-font text-4xl mb-12 text-center text-white" data-aos="fade-up">DIGGEM MERCH</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Product 1 -->
+                <div class="bg-gray-900 rounded-lg overflow-hidden shadow-lg hover:shadow-purple-500/30 transition" data-aos="fade-up" data-aos-delay="100">
+                    <img src="http://static.photos/black/640x360/1" alt="Diggem Black Tee" class="w-full h-64 object-cover">
+                    <div class="p-6">
+                        <h3 class="diggem-font text-2xl text-white mb-2">DIGGEM BLACK TEE</h3>
+                        <p class="text-gray-400 mb-4">Premium cotton streetwear essential</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-purple-400 font-bold text-xl">$29.99</span>
+                            <a href="#" class="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-full text-sm font-bold transition">
+                                BUY ON AMAZON
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 2 -->
+                <div class="bg-gray-900 rounded-lg overflow-hidden shadow-lg hover:shadow-cyan-500/30 transition" data-aos="fade-up" data-aos-delay="200">
+                    <img src="http://static.photos/black/640x360/2" alt="Diggem Logo Hoodie" class="w-full h-64 object-cover">
+                    <div class="p-6">
+                        <h3 class="diggem-font text-2xl text-white mb-2">LOGO HOODIE</h3>
+                        <p class="text-gray-400 mb-4">Oversized fit with bold branding</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-cyan-400 font-bold text-xl">$59.99</span>
+                            <a href="#" class="bg-cyan-600 hover:bg-cyan-700 text-white px-4 py-2 rounded-full text-sm font-bold transition">
+                                BUY ON AMAZON
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 3 -->
+                <div class="bg-gray-900 rounded-lg overflow-hidden shadow-lg hover:shadow-purple-500/30 transition" data-aos="fade-up" data-aos-delay="300">
+                    <img src="http://static.photos/black/640x360/3" alt="Diggem Snapback" class="w-full h-64 object-cover">
+                    <div class="p-6">
+                        <h3 class="diggem-font text-2xl text-white mb-2">SNAPBACK CAP</h3>
+                        <p class="text-gray-400 mb-4">Adjustable with embroidered logo</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-purple-400 font-bold text-xl">$24.99</span>
+                            <a href="#" class="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-full text-sm font-bold transition">
+                                BUY ON AMAZON
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
 
-    <!-- Topic sections -->
-    <section id="gaming" class="topic-section" aria-labelledby="gaming-title">
-      <div class="section-header">
-        <h3 id="gaming-title">Gaming</h3>
-        <a class="see-all" href="gaming.html">See all</a>
-      </div>
-      <div class="posts">
-        <article class="post-card">
-          <h4>First look: [Game Title] — honest take</h4>
-          <p>Quick thoughts, no fluff. What’s good, what’s broken, and if I’d buy it again.</p>
-          <a class="read-more" href="#">Read more →</a>
-        </article>
-        <article class="post-card">
-          <h4>Clip: I finally beat the boss</h4>
-          <p>Short clip + setup. Timestamped link to the rage moment.</p>
-          <a class="read-more" href="#">Watch →</a>
-        </article>
-        <article class="post-card">
-          <h4>Retro corner: comfort games</h4>
-          <p>Why I go back to old-school titles when new releases feel mid.</p>
-          <a class="read-more" href="#">Read more →</a>
-        </article>
-      </div>
+    <!-- Gaming Section -->
+    <section id="gaming" class="py-20 bg-gray-900 bg-opacity-90">
+        <div class="container mx-auto px-4">
+            <h2 class="diggem-font text-4xl mb-12 text-center text-white" data-aos="fade-up">GAMING CONTENT</h2>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <!-- Video 1 -->
+                <div class="bg-black rounded-lg overflow-hidden shadow-lg" data-aos="fade-up" data-aos-delay="100">
+                    <div class="aspect-w-16 aspect-h-9">
+                        <iframe class="w-full h-96" src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="diggem-font text-2xl text-white mb-2">EPIC GAMING MOMENTS #1</h3>
+                        <p class="text-gray-400">Check out these insane plays from last week's stream!</p>
+                    </div>
+                </div>
+                
+                <!-- Video 2 -->
+                <div class="bg-black rounded-lg overflow-hidden shadow-lg" data-aos="fade-up" data-aos-delay="200">
+                    <div class="aspect-w-16 aspect-h-9">
+                        <iframe class="w-full h-96" src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="diggem-font text-2xl text-white mb-2">NEW GAME REVIEW</h3>
+                        <p class="text-gray-400">My honest thoughts on the latest release</p>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-12">
+                <a href="#" class="inline-block bg-red-600 hover:bg-red-700 text-white px-8 py-3 rounded-full font-bold transition transform hover:scale-105">
+                    SUBSCRIBE ON YOUTUBE
+                </a>
+            </div>
+        </div>
     </section>
 
-    <section id="politics" class="topic-section" aria-labelledby="politics-title">
-      <div class="section-header">
-        <h3 id="politics-title">Government &amp; Politics</h3>
-        <a class="see-all" href="politics.html">See all</a>
-      </div>
-      <div class="posts">
-        <article class="post-card">
-          <h4>Two-party theater: latest example</h4>
-          <p>Short breakdown with receipts. No teams, just facts and patterns.</p>
-          <a class="read-more" href="#">Read more →</a>
-        </article>
-        <article class="post-card">
-          <h4>Media spin vs. source docs</h4>
-          <p>Compare the headline to the actual PDF. Decide for yourself.</p>
-          <a class="read-more" href="#">Open sources →</a>
-        </article>
-        <article class="post-card">
-          <h4>Texas angle: what it means here</h4>
-          <p>How national moves hit Texas wallets, rights, and daily life.</p>
-          <a class="read-more" href="#">Read more →</a>
-        </article>
-      </div>
+    <!-- Blog Section -->
+    <section id="blog" class="py-20 bg-black bg-opacity-90">
+        <div class="container mx-auto px-4">
+            <h2 class="diggem-font text-4xl mb-12 text-center text-white" data-aos="fade-up">LATEST POSTS</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Post 1 -->
+                <div class="bg-gray-900 rounded-lg overflow-hidden shadow-lg hover:shadow-purple-500/30 transition" data-aos="fade-up" data-aos-delay="100">
+                    <img src="http://static.photos/technology/640x360/1" alt="Blog Post" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <div class="flex items-center text-sm text-purple-400 mb-2">
+                            <span>GAMING</span>
+                            <span class="mx-2">•</span>
+                            <span>3 DAYS AGO</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-3">My Gaming Setup 2023</h3>
+                        <p class="text-gray-400 mb-4">Check out my upgraded battle station and gear recommendations for serious gamers.</p>
+                        <a href="#" class="text-cyan-400 hover:text-cyan-300 font-bold flex items-center">
+                            READ MORE <i data-feather="arrow-right" class="ml-2 w-4 h-4"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Post 2 -->
+                <div class="bg-gray-900 rounded-lg overflow-hidden shadow-lg hover:shadow-cyan-500/30 transition" data-aos="fade-up" data-aos-delay="200">
+                    <img src="http://static.photos/technology/640x360/2" alt="Blog Post" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <div class="flex items-center text-sm text-cyan-400 mb-2">
+                            <span>STREETWEAR</span>
+                            <span class="mx-2">•</span>
+                            <span>1 WEEK AGO</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-3">New Drop Coming Soon</h3>
+                        <p class="text-gray-400 mb-4">Sneak peek at our upcoming collection inspired by retro gaming aesthetics.</p>
+                        <a href="#" class="text-purple-400 hover:text-purple-300 font-bold flex items-center">
+                            READ MORE <i data-feather="arrow-right" class="ml-2 w-4 h-4"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Post 3 -->
+                <div class="bg-gray-900 rounded-lg overflow-hidden shadow-lg hover:shadow-purple-500/30 transition" data-aos="fade-up" data-aos-delay="300">
+                    <img src="http://static.photos/technology/640x360/3" alt="Blog Post" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <div class="flex items-center text-sm text-purple-400 mb-2">
+                            <span>LIFESTYLE</span>
+                            <span class="mx-2">•</span>
+                            <span>2 WEEKS AGO</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-3">Balancing Gaming & Life</h3>
+                        <p class="text-gray-400 mb-4">How I maintain productivity while keeping up with my gaming passion.</p>
+                        <a href="#" class="text-cyan-400 hover:text-cyan-300 font-bold flex items-center">
+                            READ MORE <i data-feather="arrow-right" class="ml-2 w-4 h-4"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
 
-    <section id="trafficking" class="topic-section" aria-labelledby="trafficking-title">
-      <div class="section-header">
-        <h3 id="trafficking-title">Trafficking &amp; Missing Persons</h3>
-        <a class="see-all" href="trafficking.html">See all</a>
-      </div>
-      <div class="posts">
-        <article class="post-card">
-          <h4>Case file: who’s missing & why it stalled</h4>
-          <p>Timeline + links to public records. What to look for next.</p>
-          <a class="read-more" href="#">Read more →</a>
-        </article>
-        <article class="post-card">
-          <h4>How to read a “statement”</h4>
-          <p>Spot the red flags in official language. Checklist + examples.</p>
-          <a class="read-more" href="#">Read more →</a>
-        </article>
-        <article class="post-card">
-          <h4>Resources & hotlines</h4>
-          <p>Verified orgs and steps if you think someone’s at risk.</p>
-          <a class="read-more" href="#">Open list →</a>
-        </article>
-      </div>
+    <!-- About/Contact Section -->
+    <section id="about" class="py-20 bg-gray-900 bg-opacity-90">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <!-- About -->
+                <div class="text-white" data-aos="fade-right">
+                    <h2 class="diggem-font text-4xl mb-6">ABOUT DIGGEM</h2>
+                    <p class="text-lg mb-6 text-gray-300">
+                        Born from the fusion of streetwear culture and gaming passion, DIGGEM represents the lifestyle of the modern digital native. We create apparel that resonates with gamers and urban explorers alike.
+                    </p>
+                    <p class="text-lg mb-8 text-gray-300">
+                        Founded in 2020, our mission is to bridge the gap between virtual worlds and street fashion, creating pieces that tell your story both online and offline.
+                    </p>
+                    <div class="flex space-x-6">
+                        <a href="#" class="text-white hover:text-purple-400 transition">
+                            <i data-feather="instagram" class="w-6 h-6"></i>
+                        </a>
+                        <a href="#" class="text-white hover:text-cyan-400 transition">
+                            <i data-feather="twitter" class="w-6 h-6"></i>
+                        </a>
+                        <a href="#" class="text-white hover:text-red-400 transition">
+                            <i data-feather="youtube" class="w-6 h-6"></i>
+                        </a>
+                        <a href="#" class="text-white hover:text-blue-400 transition">
+                            <i data-feather="facebook" class="w-6 h-6"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Contact Form -->
+                <div class="bg-black bg-opacity-70 p-8 rounded-lg shadow-lg" data-aos="fade-left">
+                    <h3 class="diggem-font text-2xl mb-6 text-white">GET IN TOUCH</h3>
+                    <form>
+                        <div class="mb-4">
+                            <label for="name" class="block text-gray-300 mb-2">NAME</label>
+                            <input type="text" id="name" class="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-purple-500">
+                        </div>
+                        <div class="mb-4">
+                            <label for="email" class="block text-gray-300 mb-2">EMAIL</label>
+                            <input type="email" id="email" class="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-cyan-500">
+                        </div>
+                        <div class="mb-6">
+                            <label for="message" class="block text-gray-300 mb-2">MESSAGE</label>
+                            <textarea id="message" rows="4" class="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-purple-500"></textarea>
+                        </div>
+                        <button type="submit" class="w-full bg-gradient-to-r from-purple-600 to-cyan-600 text-white px-6 py-3 rounded-full font-bold hover:from-purple-700 hover:to-cyan-700 transition">
+                            SEND MESSAGE
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
     </section>
 
-    <section id="texas" class="topic-section" aria-labelledby="texas-title">
-      <div class="section-header">
-        <h3 id="texas-title">Texas</h3>
-        <a class="see-all" href="texas.html">See all</a>
-      </div>
-      <div class="posts">
-        <article class="post-card">
-          <h4>Local wins & losses this week</h4>
-          <p>What mattered in Texas — not what trended.</p>
-          <a class="read-more" href="#">Read more →</a>
-        </article>
-        <article class="post-card">
-          <h4>Texan gear I actually use</h4>
-          <p>Stuff that holds up. No paid fluff. Links where it makes sense.</p>
-          <a class="read-more" href="#">See picks →</a>
-        </article>
-        <article class="post-card">
-          <h4>Life update</h4>
-          <p>Behind-the-scenes — moving, work, the grind, the wins.</p>
-          <a class="read-more" href="#">Read more →</a>
-        </article>
-      </div>
-    </section>
-
-    <!-- Featured merch -->
-    <section id="merch" class="latest" aria-labelledby="merch-title">
-      <div class="section-header">
-        <h3 id="merch-title">Featured Merch</h3>
-        <a class="see-all" href="shop.html">Shop</a>
-      </div>
-      <div class="posts">
-        <article class="post-card">
-          <h4>Drop: “Saint in Rebellion” tee</h4>
-          <p>La Santa Muerte inspired — gritty, classic iconography. Front & back print.</p>
-          <a class="read-more" href="shop.html">Shop now →</a>
-        </article>
-      </div>
-    </section>
-
-    <!-- Latest video -->
-    <section id="latest" class="latest" aria-labelledby="latest-title">
-      <div class="section-header">
-        <h3 id="latest-title">Latest</h3>
-        <a class="see-all" href="https://www.youtube.com/@TheDiggemOfficial" target="_blank" rel="noopener">Visit Channel</a>
-      </div>
-      <div class="video-wrap">
-        <!-- Auto-latest uploads for channel handle (works for most channels).
-             If it doesn't show, swap to a specific video ID: https://www.youtube.com/embed/VIDEO_ID -->
-        <iframe title="Latest video" src="https://www.youtube.com/embed?listType=user_uploads&list=TheDiggemOfficial"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-      </div>
-    </section>
-
-    <!-- Contact -->
-    <section class="latest" id="contact" aria-labelledby="contact-title">
-      <h3 id="contact-title">Contact</h3>
-      <form class="contact" action="https://formspree.io/f/your-id" method="POST" style="display:grid;gap:.75rem;max-width:640px;margin:1rem auto">
-        <input type="text" name="name" placeholder="Your name" required
-          style="background:#15171a;border:1px solid #24262c;border-radius:8px;color:#f2f2f2;padding:.7rem">
-        <input type="email" name="email" placeholder="Your email" required
-          style="background:#15171a;border:1px solid #24262c;border-radius:8px;color:#f2f2f2;padding:.7rem">
-        <textarea name="message" rows="5" placeholder="Your message" required
-          style="background:#15171a;border:1px solid #24262c;border-radius:8px;color:#f2f2f2;padding:.7rem"></textarea>
-        <button type="submit" style="background:#3a2b10;border:1px solid #4a3614;color:#e8d2a6;padding:.6rem 1rem;border-radius:8px;cursor:pointer">
-          Send
-        </button>
-      </form>
-    </section>
-
-    <footer>
-      <div>© 2025 The Diggem. All rights reserved.</div>
-      <div class="socials" aria-label="Social links">
-        <a href="https://x.com/yourhandle" target="_blank" rel="noopener">X / Twitter</a>
-        <a href="https://youtube.com/@TheDiggemOfficial" target="_blank" rel="noopener">YouTube</a>
-        <a href="https://instagram.com/yourhandle" target="_blank" rel="noopener">Instagram</a>
-        <a href="https://twitch.tv/thediggem" target="_blank" rel="noopener">Twitch</a>
-      </div>
+    <!-- Footer -->
+    <footer class="bg-black py-12 border-t border-gray-800">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-6 md:mb-0">
+                    <a href="#" class="diggem-font text-2xl text-white">DIGGEM</a>
+                    <p class="text-gray-500 mt-2">Streetwear • Gaming • Lifestyle</p>
+                </div>
+                <div class="flex flex-col md:flex-row md:space-x-8 space-y-4 md:space-y-0">
+                    <a href="#" class="text-gray-400 hover:text-white transition">Privacy Policy</a>
+                    <a href="#" class="text-gray-400 hover:text-white transition">Terms of Service</a>
+                    <a href="#" class="text-gray-400 hover:text-white transition">Shipping Info</a>
+                    <a href="#" class="text-gray-400 hover:text-white transition">FAQ</a>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-500">
+                <p>© 2023 DIGGEM. All rights reserved.</p>
+            </div>
+        </div>
     </footer>
-  </div>
 
-  <script>
-    // Smooth scroll for internal anchors
-    document.querySelectorAll('a[href^="#"]').forEach(a=>{
-      a.addEventListener('click', e=>{
-        const id=a.getAttribute('href');
-        if(id.length>1){ e.preventDefault(); document.querySelector(id)?.scrollIntoView({behavior:'smooth'}); }
-      });
-    });
-
-    // Rotate taglines every 6s
-    const taglines=[
-      "Gaming, Texas, and calling out the crap they don’t want you to see.",
-      "Missing persons, political lies, and the games that keep me sane."
-    ];
-    let tIndex=0;
-    setInterval(()=>{
-      tIndex=(tIndex+1)%taglines.length;
-      const el=document.getElementById('tagline');
-      if(el){ el.textContent=taglines[tIndex]; }
-    },6000);
-  </script>
+    <script>
+        // Initialize animations and effects
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true
+        });
+        
+        feather.replace();
+        
+        // Vanta.js background
+        VANTA.GLOBE({
+            el: "#vanta-bg",
+            mouseControls: true,
+            touchControls: true,
+            gyroControls: false,
+            minHeight: 200.00,
+            minWidth: 200.00,
+            scale: 1.00,
+            scaleMobile: 1.00,
+            color: 0x9400d3,
+            backgroundColor: 0x0,
+            size: 0.8
+        });
+        
+        // Mobile menu toggle
+        document.querySelector('.md\\:hidden').addEventListener('click', function() {
+            const menu = document.querySelector('.md\\:flex.space-x-8');
+            menu.classList.toggle('hidden');
+            menu.classList.toggle('flex');
+            menu.classList.toggle('flex-col');
+            menu.classList.toggle('absolute');
+            menu.classList.toggle('top-16');
+            menu.classList.toggle('right-4');
+            menu.classList.toggle('bg-black');
+            menu.classList.toggle('p-4');
+            menu.classList.toggle('rounded-lg');
+            menu.classList.toggle('space-y-4');
+            menu.classList.toggle('space-x-0');
+            menu.classList.toggle('shadow-lg');
+        });
+    </script>
 </body>
 </html>

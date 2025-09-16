@@ -3,254 +3,227 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Texas mysteries, scary missing stories, eerie tales, and real investigations. Shop merch and watch gaming echoes on YouTube.">
+  <meta property="og:title" content="The Diggem — Texas • Eerie • Real">
+  <meta property="og:description" content="Stories from the long road, threads with a pulse, and projects that won’t sleep. Dive into missing souls under the Lone Star.">
+  <meta property="og:image" content="/images/hero-texas-night.jpg">
   <title>The Diggem — Texas • Eerie • Real</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Atkinson+Hyperlegible:wght@400;700&display=swap" rel="stylesheet">
   <style>
-    :root{
-      --mesquite:#0B0B0B; --dusk:#3A2E2A; --bone:#EDE7DF; --sage:#7C8A7A; --chili:#B03A2E;
+    :root {
+      --mesquite: #0B0B0B; --dusk: #3A2E2A; --bone: #EDE7DF; --sage: #7C8A7A; --chili: #B03A2E; --blood-moon: #8B0000;
     }
-    body{background:var(--mesquite); color:var(--bone); font-family:"Atkinson Hyperlegible", system-ui, sans-serif;}
-    .hheading{font-family:"Cinzel", serif; letter-spacing:.02em}
-    .grain{background-image:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width=\'160\' height=\'160\'><filter id=\'n\'><feTurbulence type=\'fractalNoise\' baseFrequency=\'0.8\' numOctaves=\'2\' stitchTiles=\'stitch\'/></filter><rect width=\'100%\' height=\'100%\' filter=\'url(%23n)\' opacity=\'0.035\'/></svg>');}
+    body { background: var(--mesquite); color: var(--bone); font-family: "Atkinson Hyperlegible", system-ui, sans-serif; }
+    .hheading { font-family: "Cinzel", serif; letter-spacing: .02em; }
+    .grain { background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width=\'160\' height=\'160\'><filter id=\'n\'><feTurbulence type=\'fractalNoise\' baseFrequency=\'0.8\' numOctaves=\'2\' stitchTiles=\'stitch\'/></filter><rect width=\'100%\' height=\'100%\' filter=\'url(%23n)\' opacity=\'0.035\'/></svg>'); }
+    .fade-in { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+    .parallax { background-attachment: fixed; } /* Subtle hero depth */
+    .hover-glow:hover { text-shadow: 0 0 10px var(--blood-moon); color: var(--blood-moon); transition: all 0.3s; }
   </style>
 </head>
 <body class="antialiased">
-  <!-- NAV -->
-  <header class="fixed inset-x-0 top-0 z-50 bg-black/50 backdrop-blur border-b border-white/10">
+  <!-- NAV: Fixed, accessible -->
+  <header class="fixed inset-x-0 top-0 z-50 bg-black/50 backdrop-blur border-b border-white/10" role="banner">
     <div class="mx-auto max-w-6xl px-4 h-16 flex items-center justify-between">
-      <a href="/" class="hheading text-xl tracking-wide">THE DIGGEM</a>
-      <nav class="hidden md:flex items-center gap-6 text-sm">
-        <a href="/about" class="hover:text-[--sage]">Texas / About</a>
-        <a href="/investigations" class="hover:text-[--sage]">Investigations</a>
-        <a href="/shop" class="hover:text-[--sage]">Shop</a>
-        <a href="/gaming" class="hover:text-[--sage]">Gaming</a>
-        <a href="/blog" class="hover:text-[--sage]">Blog</a>
-        <a href="/contact" class="hover:text-[--sage]">Contact</a>
+      <a href="/" class="hheading text-xl tracking-wide hover-glow" aria-label="Home">THE DIGGEM</a>
+      <nav class="hidden md:flex items-center gap-6 text-sm" role="navigation">
+        <a href="/about" class="hover:text-[--sage] focus:outline-none focus:ring-2 focus:ring-[--sage]" aria-label="Texas About">Texas / About</a>
+        <a href="#tales" class="hover:text-[--sage] focus:outline-none focus:ring-2 focus:ring-[--sage]" aria-label="Mysterious Tales">Tales</a>
+        <a href="/investigations" class="hover:text-[--sage] focus:outline-none focus:ring-2 focus:ring-[--sage]" aria-label="Investigations">Investigations</a>
+        <a href="#shop" class="hover:text-[--sage] focus:outline-none focus:ring-2 focus:ring-[--sage]" aria-label="Shop">Shop</a>
+        <a href="#youtube" class="hover:text-[--sage] focus:outline-none focus:ring-2 focus:ring-[--sage]" aria-label="YouTube Echoes">Echoes</a>
+        <a href="/gaming" class="hover:text-[--sage] focus:outline-none focus:ring-2 focus:ring-[--sage]" aria-label="Gaming">Gaming</a>
+        <a href="/blog" class="hover:text-[--sage] focus:outline-none focus:ring-2 focus:ring-[--sage]" aria-label="Blog">Blog</a>
+        <a href="/contact" class="hover:text-[--sage] focus:outline-none focus:ring-2 focus:ring-[--sage]" aria-label="Contact">Contact</a>
       </nav>
-      <a href="/newsletter" class="text-xs md:text-sm px-3 py-1.5 rounded-full border border-white/20 hover:border-white/40">Join the list</a>
+      <a href="/newsletter" class="text-xs md:text-sm px-3 py-1.5 rounded-full border border-white/20 hover:border-white/40 focus:outline-none focus:ring-2 focus:ring-[--sage]" aria-label="Join Newsletter">Join the List</a>
     </div>
   </header>
 
-  <!-- HERO -->
-  <section class="relative min-h-[84vh] flex items-end">
-    <img src="/images/hero-texas-night.jpg" alt="" class="absolute inset-0 w-full h-full object-cover object-center opacity-70">
+  <!-- HERO: Parallax for eerie depth -->
+  <section class="relative min-h-[84vh] flex items-end parallax grain" id="hero" style="background-image: linear-gradient(to bottom, var(--mesquite), transparent), url('/images/hero-texas-night.jpg'); background-size: cover; background-position: center;">
     <div class="absolute inset-0 bg-gradient-to-t from-[--mesquite] via-black/40 to-transparent"></div>
     <div class="relative mx-auto max-w-6xl px-4 pb-24">
       <h1 class="hheading text-4xl md:text-6xl font-bold max-w-3xl">Texas-built. A little eerie. 100% real.</h1>
-      <p class="mt-4 max-w-2xl text-[1.05rem] text-white/85">
-        Stories from the long road, threads with a pulse, and the projects that won’t sleep.
-      </p>
+      <p class="mt-4 max-w-2xl text-[1.05rem] text-white/85">Stories from the long road, threads with a pulse, and projects that won’t sleep. Dive into missing souls under the Lone Star—where gaming shadows meet desert ghosts.</p>
       <div class="mt-8 flex flex-wrap gap-3">
-        <a href="/investigations" class="px-5 py-3 rounded-lg bg-[--chili] hover:bg-red-700 font-semibold">Read the Latest Investigation</a>
-        <a href="/shop" class="px-5 py-3 rounded-lg border border-white/25 hover:border-white/50">Shop Artifacted Threads</a>
+        <a href="#tales" class="px-5 py-3 rounded-lg bg-[--chili] hover:bg-red-700 font-semibold hover-glow focus:outline-none focus:ring-2 focus:ring-[--chili]" aria-label="Read Latest Tale">Read a Scary Tale</a>
+        <a href="#shop" class="px-5 py-3 rounded-lg border border-white/25 hover:border-white/50 focus:outline-none focus:ring-2 focus:ring-white/50">Shop Eerie Threads</a>
       </div>
     </div>
   </section>
 
-  <!-- PILLARS -->
-  <section class="mx-auto max-w-6xl px-4 py-16 grid md:grid-cols-3 gap-6 grain">
-    <a href="/investigations" class="group block rounded-2xl border border-white/10 p-6 hover:bg-white/5 transition">
-      <h3 class="hheading text-2xl mb-2">Investigations</h3>
-      <p class="text-white/80">Continuous, uncomfortable, documented. Read the threads that won’t go away.</p>
-      <div class="mt-4 text-sm text-[--sage] group-hover:underline">Enter the archive →</div>
+  <!-- PILLARS: 4-col grid for balance -->
+  <section class="mx-auto max-w-6xl px-4 py-16 grid md:grid-cols-4 gap-6 grain" id="pillars">
+    <a href="/investigations" class="group block rounded-2xl border border-white/10 p-6 hover:bg-white/5 transition fade-in" tabindex="0">
+      <h3 class="hheading text-2xl mb-2 hover-glow">Investigations</h3>
+      <p class="text-white/80">Continuous, uncomfortable, documented. Threads that won’t go away.</p>
+      <div class="mt-4 text-sm text-[--sage] group-hover:underline">Enter the Archive →</div>
     </a>
-    <a href="/shop" class="group block rounded-2xl border border-white/10 p-6 hover:bg-white/5 transition">
-      <h3 class="hheading text-2xl mb-2">Artifacted Threads</h3>
-      <p class="text-white/80">Designs with teeth: EEG, Santa Muerte, and Texas-born drops.</p>
-      <div class="mt-4 text-sm text-[--sage] group-hover:underline">Browse the shop →</div>
+    <a href="#tales" class="group block rounded-2xl border border-white/10 p-6 hover:bg-white/5 transition fade-in" tabindex="0">
+      <h3 class="hheading text-2xl mb-2 hover-glow">Scary Tales</h3>
+      <p class="text-white/80">Lone Star vanishings: Real mysteries from Texas badlands.</p>
+      <div class="mt-4 text-sm text-[--sage] group-hover:underline">Uncover Secrets →</div>
     </a>
-    <a href="/gaming" class="group block rounded-2xl border border-white/10 p-6 hover:bg-white/5 transition">
-      <h3 class="hheading text-2xl mb-2">The Diggem Gaming</h3>
-      <p class="text-white/80">Clips, tests, and tactical breaks. Secondary, but still us.</p>
-      <div class="mt-4 text-sm text-[--sage] group-hover:underline">Watch clips →</div>
+    <a href="#shop" class="group block rounded-2xl border border-white/10 p-6 hover:bg-white/5 transition fade-in" tabindex="0">
+      <h3 class="hheading text-2xl mb-2 hover-glow">Artifacted Threads</h3>
+      <p class="text-white/80">Dragon slayers & vampire nights: Texas-inspired drops on Amazon.</p>
+      <div class="mt-4 text-sm text-[--sage] group-hover:underline">Browse on Amazon →</div>
+    </a>
+    <a href="#youtube" class="group block rounded-2xl border border-white/10 p-6 hover:bg-white/5 transition fade-in" tabindex="0">
+      <h3 class="hheading text-2xl mb-2 hover-glow">Gaming Echoes</h3>
+      <p class="text-white/80">Virtual battlefields with eerie twists: Clips from the void.</p>
+      <div class="mt-4 text-sm text-[--sage] group-hover:underline">Watch Now →</div>
     </a>
   </section>
 
-  <!-- FEATURED STORY -->
-  <section class="mx-auto max-w-6xl px-4 pb-20">
-    <div class="rounded-2xl border border-white/10 overflow-hidden">
-      <div class="grid md:grid-cols-2">
-        <img src="/images/featured-story.jpg" alt="" class="w-full h-full object-cover">
-        <div class="p-8 bg-black/40">
-          <div class="text-xs tracking-wide text-[--sage] uppercase">Featured Investigation</div>
-          <h3 class="hheading text-3xl mt-2">[Replace] Title of your latest thread</h3>
-          <p class="mt-3 text-white/85">A short hook (2–3 lines) that sets the tone—Texas plain-spoken, slightly eerie, and direct.</p>
-          <a href="/investigations/latest" class="mt-6 inline-block px-5 py-3 rounded-lg bg-white/10 hover:bg-white/20">Read now</a>
+  <!-- TALES ARCHIVE: Tied to merch/gaming -->
+  <section id="tales" class="mx-auto max-w-6xl px-4 py-16 grain">
+    <h2 class="hheading text-4xl text-center mb-12 hover-glow">Lone Star Vanishings: Scary Texas Tales</h2>
+    <div class="grid md:grid-cols-3 gap-8">
+      <article class="fade-in rounded-2xl border border-white/10 p-6 bg-black/20 hover:bg-black/30 transition hover-glow" itemscope itemtype="https://schema.org/Article">
+        <img src="/images/tale-marfa.jpg" alt="Foggy Marfa lights, site of mysterious hiker disappearance" class="w-full h-48 object-cover rounded-lg mb-4" loading="lazy">
+        <h3 class="hheading text-xl mb-2" itemprop="headline">The Lights That Swallowed a Hiker</h3>
+        <p class="text-white/80 mb-4" itemprop="description">Marfa's orbs claim another—portal or predator? Tie-in: Gear up with our Dragon Slayer Tee for desert hunts. (1987 true case).</p>
+        <div class="flex flex-col gap-2 text-sm">
+          <a href="/tales/marfa-full" class="text-[--chili] hover:underline" itemprop="url">Read Full</a>
+          <a href="https://www.youtube.com/embed/ukKqVnNYLvE" class="text-[--sage] hover:underline" target="_blank" rel="noopener">Watch Gaming Tie-In (WWII Shadows)</a>
+          <a href="https://www.amazon.com/The-Diggem-Clothing-Dragon-T-Shirt/dp/B0CT2NBS75" class="text-[--chili] hover:underline" target="_blank" rel="noopener sponsored">Buy Dragon Tee</a>
+        </div>
+      </article>
+      <!-- Similar for 2 more; stagger with md:translate-y-4 for animation -->
+      <article class="fade-in rounded-2xl border border-white/10 p-6 bg-black/20 hover:bg-black/30 transition md:translate-y-4 hover-glow">
+        <img src="/images/tale-bigbend.jpg" alt="Abandoned Big Bend trail at dusk" class="w-full h-48 object-cover rounded-lg mb-4" loading="lazy">
+        <h3 class="hheading text-xl mb-2">Echoes in Big Bend</h3>
+        <p class="text-white/80 mb-4">Family vanishes—spirits or stormtroopers? Link to Vampire Night merch.</p>
+        <div class="flex flex-col gap-2 text-sm">
+          <a href="/tales/bigbend-full" class="text-[--chili] hover:underline">Read Full</a>
+          <a href="https://www.youtube.com/embed/ZfT4tvOWYkk" class="text-[--sage] hover:underline" target="_blank" rel="noopener">Watch Racing Phantoms</a> <!-- Placeholder; update URL -->
+          <a href="https://www.amazon.com/The-Diggem-Clothing-Vampire-T-Shirt/dp/B0FNCSKFW3" class="text-[--chili] hover:underline" target="_blank" rel="noopener sponsored">Buy Vampire Tee</a>
+        </div>
+      </article>
+      <article class="fade-in rounded-2xl border border-white/10 p-6 bg-black/20 hover:bg-black/30 transition hover-glow">
+        <img src="/images/tale-ghostroad.jpg" alt="Haunted Texas ghost road" class="w-full h-48 object-cover rounded-lg mb-4" loading="lazy">
+        <h3 class="hheading text-xl mb-2">The Ghost Road Hitcher</h3>
+        <p class="text-white/80 mb-4">Phantom rider leads to doom—gaming parallel in virtual chases.</p>
+        <div class="flex flex-col gap-2 text-sm">
+          <a href="/tales/ghostroad-full" class="text-[--chili] hover:underline">Read Full</a>
+          <a href="https://www.youtube.com/embed/wIxmxCXI2v" class="text-[--sage] hover:underline" target="_blank" rel="noopener">See Stormtrooper Hunt</a> <!-- Placeholder; update URL -->
+          <a href="https://www.amazon.com/The-Diggem-Clothing-Dragon-Pullover/dp/B0CW1WC7QN" class="text-[--chili] hover:underline" target="_blank" rel="noopener sponsored">Buy Dragon Hoodie</a>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- SHOP SPOTLIGHT: Your merch cards, rethemed -->
+  <section id="shop" class="mx-auto max-w-6xl px-4 py-16 bg-[--dusk]/50 grain">
+    <h2 class="hheading text-4xl text-center mb-12 hover-glow">Eerie Texas Merch on Amazon</h2>
+    <div class="grid md:grid-cols-3 gap-8">
+      <div class="text-center fade-in bg-gray-900 rounded-lg p-6">
+        <img src="https://via.placeholder.com/400x400/000000/FFFFFF?text=Dragon+Slayer+Tee" alt="The Diggem Dragon Slayer Tee - Texas mystery edition" class="mx-auto w-48 h-48 object-cover rounded-lg mb-4" loading="lazy">
+        <h3 class="text-xl mb-2">Dragon Slayer Tee</h3>
+        <p class="text-white/80 mb-4">Slay shadows in Big Bend style. (Update price via Amazon API if dynamic.)</p>
+        <a href="https://www.amazon.com/The-Diggem-Clothing-Dragon-T-Shirt/dp/B0CT2NBS75" target="_blank" rel="noopener sponsored" class="block bg-[--chili] text-white px-6 py-3 rounded-lg hover:bg-red-700 mx-auto w-fit hover-glow">$29.99 → Buy on Amazon</a>
+      </div>
+      <!-- Repeat pattern for Hoodie & Vampire Tee; use real images from Amazon if available -->
+      <div class="text-center fade-in bg-gray-900 rounded-lg p-6 md:translate-y-4">
+        <img src="https://via.placeholder.com/400x400/000000/00FFFF?text=Dragon+Hoodie" alt="The Diggem Dragon Hoodie" class="mx-auto w-48 h-48 object-cover rounded-lg mb-4" loading="lazy">
+        <h3 class="text-xl mb-2">Dragon Hoodie</h3>
+        <p class="text-white/80 mb-4">Wrap in desert night armor.</p>
+        <a href="https://www.amazon.com/The-Diggem-Clothing-Dragon-Pullover/dp/B0CW1WC7QN" target="_blank" rel="noopener sponsored" class="block bg-[--chili] text-white px-6 py-3 rounded-lg hover:bg-red-700 mx-auto w-fit hover-glow">$59.99 → Buy on Amazon</a>
+      </div>
+      <div class="text-center fade-in bg-gray-900 rounded-lg p-6">
+        <img src="https://via.placeholder.com/400x400/000000/FF00FF?text=Vampire+Night+Tee" alt="The Diggem Vampire Night Tee" class="mx-auto w-48 h-48 object-cover rounded-lg mb-4" loading="lazy">
+        <h3 class="text-xl mb-2">Vampire Night Tee</h3>
+        <p class="text-white/80 mb-4">Hunt under Austin's blood moon.</p>
+        <a href="https://www.amazon.com/The-Diggem-Clothing-Vampire-T-Shirt/dp/B0FNCSKFW3" target="_blank" rel="noopener sponsored" class="block bg-[--chili] text-white px-6 py-3 rounded-lg hover:bg-red-700 mx-auto w-fit hover-glow">$29.99 → Buy on Amazon</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- YOUTUBE ECHOES / GAMING: Blended section with valid embed -->
+  <section id="youtube" class="mx-auto max-w-6xl px-4 py-16 grain">
+    <h2 class="hheading text-4xl text-center mb-12 hover-glow">Echoes: Gaming in the Shadows</h2>
+    <div class="grid md:grid-cols-3 gap-8"> <!-- 3-cols to match merch -->
+      <div class="fade-in bg-gray-900 rounded-lg overflow-hidden">
+        <iframe width="100%" height="315" src="https://www.youtube.com/embed/ukKqVnNYLvE?rel=0" title="COD WWII: Normandy Vanishings" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+        <div class="p-6">
+          <h3 class="hheading text-xl mb-2">Normandy's Lost Souls (COD WWII)</h3>
+          <p class="text-white/80 mb-4">Eerie trenches where soldiers vanish—like Texas ghosts.</p>
+          <a href="https://www.youtube.com/watch?v=ukKqVnNYLvE" target="_blank" rel="noopener" class="text-[--sage] hover:underline block hover-glow">Watch Full (4 Views)</a>
+        </div>
+      </div>
+      <!-- Placeholders for other channels; update with your 2 channels -->
+      <div class="fade-in bg-gray-900 rounded-lg overflow-hidden md:translate-y-4">
+        <iframe width="100%" height="315" src="https://www.youtube.com/embed/ZfT4tvOWYkk?rel=0" title="Racing Phantoms Playlist" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+        <div class="p-6">
+          <h3 class="hheading text-xl mb-2">Phantom Races (Channel 2)</h3>
+          <p class="text-white/80 mb-4">High-speed disappearances on dusty tracks.</p>
+          <a href="https://www.youtube.com/channel/YOUR_CHANNEL_2" target="_blank" rel="noopener" class="text-[--sage] hover:underline block hover-glow">Subscribe</a>
+        </div>
+      </div>
+      <div class="fade-in bg-gray-900 rounded-lg overflow-hidden">
+        <iframe width="100%" height="315" src="https://www.youtube.com/embed/wIxmxCXI2v?rel=0" title="Stormtrooper Hunts (Channel 1)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+        <div class="p-6">
+          <h3 class="hheading text-xl mb-2">Stormtrooper Vanishings</h3>
+          <p class="text-white/80 mb-4">Star Wars chases in the badlands.</p>
+          <a href="https://www.youtube.com/channel/YOUR_CHANNEL_1" target="_blank" rel="noopener" class="text-[--sage] hover:underline block hover-glow">Subscribe</a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- FOOTER -->
-  <footer class="border-t border-white/10">
+  <!-- FEATURED STORY: Texas tie-in -->
+  <section class="mx-auto max-w-6xl px-4 pb-20 fade-in">
+    <div class="rounded-2xl border border-white/10 overflow-hidden">
+      <div class="grid md:grid-cols-2">
+        <img src="/images/featured-story.jpg" alt="Chilling illustration of Servant Girl murders in Austin" class="w-full h-full object-cover" loading="lazy">
+        <div class="p-8 bg-black/40">
+          <div class="text-xs tracking-wide text-[--sage] uppercase">Featured Tale</div>
+          <h3 class="hheading text-3xl mt-2 hover-glow">The Servant Girl's Shadow</h3>
+          <p class="mt-3 text-white/85">Austin's 1885 axe horrors—Ripper's kin or Lone Star curse? Gaming parallel: Vanish in the fog.</p>
+          <a href="/tales/servant-full" class="mt-6 inline-block px-5 py-3 rounded-lg bg-white/10 hover:bg-white/20 focus:outline-none focus:ring-2 focus:ring-white/50 hover-glow">Read Now</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER: Clean, with year -->
+  <footer class="border-t border-white/10" role="contentinfo">
     <div class="mx-auto max-w-6xl px-4 py-10 grid md:grid-cols-3 gap-8 text-sm">
       <div>
         <div class="hheading text-xl mb-2">The Diggem</div>
-        <p class="text-white/70">Born in Texas. Built for those who don’t flinch.</p>
+        <p class="text-white/70">Born in Texas. Built for those who don’t flinch. Mysteries, merch, and gaming shadows linked.</p>
       </div>
       <div class="space-y-2">
-        <a href="/privacy" class="block hover:underline">Privacy</a>
-        <a href="/terms" class="block hover:underline">Terms</a>
-        <a href="/faq" class="block hover:underline">FAQ</a>
+        <a href="/privacy" class="block hover:underline hover-glow">Privacy</a>
+        <a href="/terms" class="block hover:underline hover-glow">Terms</a>
+        <a href="/faq" class="block hover:underline hover-glow">FAQ</a>
       </div>
       <div>
         <div class="mb-2">Newsletter</div>
-        <form class="flex gap-2">
-          <input type="email" placeholder="you@domain.com" class="flex-1 rounded-lg px-3 py-2 bg-white/10 placeholder-white/40 focus:outline-none">
-          <button class="px-4 py-2 rounded-lg bg-[--chili] hover:bg-red-700">Join</button>
+        <form class="flex gap-2" aria-label="Newsletter Signup">
+          <input type="email" placeholder="you@domain.com" class="flex-1 rounded-lg px-3 py-2 bg-white/10 placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-[--sage]" required>
+          <button class="px-4 py-2 rounded-lg bg-[--chili] hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-[--chili]" type="submit">Join</button>
         </form>
         <div class="mt-3 text-white/60">© <span id="y"></span> The Diggem — Texas</div>
       </div>
     </div>
   </footer>
-  <script>document.getElementById('y').textContent=new Date().getFullYear()</script>
-</body>
-  <div id="vanta-bg" class="fixed inset-0 -z-10 opacity-20"></div>
-  <!-- Nav -->
-  <nav class="bg-black/80 sticky top-0 z-50 border-b border-purple-500">
-    <div class="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
-      <a href="#" class="diggem-font text-2xl text-white hover:text-purple-400">THE DIGGEM</a>
-      <div id="mainMenu" class="hidden md:flex items-center space-x-8">
-        <a href="#" class="text-white hover:text-cyan-400">HOME</a>
-        <a href="#shop" class="text-white hover:text-cyan-400">SHOP</a>
-        <a href="#gaming" class="text-white hover:text-cyan-400">GAMING</a>
-        <a href="#blog" class="text-white hover:text-cyan-400">BLOG</a>
-        <a href="#about" class="text-white hover:text-cyan-400">ABOUT</a>
-      </div>
-      <button id="menuBtn" class="md:hidden text-white"><i data-feather="menu"></i></button>
-    </div>
-    <div id="mobileMenu" class="md:hidden hidden flex-col bg-black/95 rounded-lg p-4 space-y-4 shadow-lg">
-      <a href="#" class="text-white hover:text-cyan-400">HOME</a>
-      <a href="#shop" class="text-white hover:text-cyan-400">SHOP</a>
-      <a href="#gaming" class="text-white hover:text-cyan-400">GAMING</a>
-      <a href="#blog" class="text-white hover:text-cyan-400">BLOG</a>
-      <a href="#about" class="text-white hover:text-cyan-400">ABOUT</a>
-    </div>
-  </nav>
-  <!-- Hero -->
-  <section class="min-h-[80vh] flex items-center justify-center bg-grid">
-    <div class="max-w-4xl mx-auto px-4 text-center" data-aos="fade-up">
-      <h1 class="diggem-font text-6xl md:text-8xl mb-4 text-white glow">THE DIGGEM</h1>
-      <p class="text-xl md:text-2xl mb-8 text-gray-300">
-        Where streetwear meets gaming culture. Wear the vibe, live the grind.
-      </p>
-      <div class="flex justify-center gap-4 flex-wrap">
-        <a href="#shop" class="bg-purple-600 hover:bg-cyan-600 text-white px-6 py-3 rounded-full font-bold">SHOP NOW</a>
-        <a href="#gaming" class="bg-transparent border-2 border-white hover:border-cyan-400 text-white px-6 py-3 rounded-full font-bold">WATCH VIDS</a>
-      </div>
-    </div>
-  </section>
-  <!-- Shop -->
-  <section id="shop" class="py-20 bg-black/90">
-    <div class="max-w-6xl mx-auto px-4">
-      <h2 class="diggem-font text-4xl mb-12 text-center text-white" data-aos="fade-up">THE DIGGEM MERCH</h2>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        <!-- Product 1 -->
-        <div class="bg-gray-900 rounded-lg overflow-hidden shadow-lg" data-aos="fade-up" data-aos-delay="100">
-          <img src="https://via.placeholder.com/400x400/000000/FFFFFF?text=Dragon+Slayer+Tee" alt="The Diggem Dragon Slayer Tee" class="w-full h-64 object-cover" />
-          <div class="p-6">
-            <h3 class="diggem-font text-2xl text-white mb-2">THE DIGGEM DRAGON SLAYER TEE</h3>
-            <p class="text-gray-400 mb-4">Premium cotton streetwear essential</p>
-            <div class="flex justify-between items-center">
-              <span class="text-purple-400 font-bold text-xl">$29.99</span>
-              <a href="https://www.amazon.com/The-Diggem-Clothing-Dragon-T-Shirt/dp/B0CT2NBS75" target="_blank" class="bg-purple-600 text-white px-4 py-2 rounded-full text-sm font-bold">BUY ON AMAZON</a>
-            </div>
-          </div>
-        </div>
-        <!-- Product 2 -->
-        <div class="bg-gray-900 rounded-lg overflow-hidden shadow-lg" data-aos="fade-up" data-aos-delay="200">
-          <img src="https://via.placeholder.com/400x400/000000/00FFFF?text=Dragon+Slayer+Hoodie" alt="The Diggem Dragon Slayer Hoodie" class="w-full h-64 object-cover" />
-          <div class="p-6">
-            <h3 class="diggem-font text-2xl text-white mb-2">THE DIGGEM DRAGON SLAYER HOODIE</h3>
-            <p class="text-gray-400 mb-4">Oversized fit with bold branding</p>
-            <div class="flex justify-between items-center">
-              <span class="text-cyan-400 font-bold text-xl">$59.99</span>
-              <a href="https://www.amazon.com/The-Diggem-Clothing-Dragon-Pullover/dp/B0CW1WC7QN" target="_blank" class="bg-cyan-600 text-white px-4 py-2 rounded-full text-sm font-bold">BUY ON AMAZON</a>
-            </div>
-          </div>
-        </div>
-        <!-- Product 3 -->
-        <div class="bg-gray-900 rounded-lg overflow-hidden shadow-lg" data-aos="fade-up" data-aos-delay="300">
-          <img src="https://via.placeholder.com/400x400/000000/FF00FF?text=Vampire+Night+Tee" alt="The Diggem Vampire Night Tee" class="w-full h-64 object-cover" />
-          <div class="p-6">
-            <h3 class="diggem-font text-2xl text-white mb-2">THE DIGGEM VAMPIRE NIGHT TEE</h3>
-            <p class="text-gray-400 mb-4">Graphic tee with retro horror vibe</p>
-            <div class="flex justify-between items-center">
-              <span class="text-purple-400 font-bold text-xl">$29.99</span>
-              <a href="https://www.amazon.com/The-Diggem-Clothing-Vampire-T-Shirt/dp/B0FNCSKFW3" target="_blank" class="bg-purple-600 text-white px-4 py-2 rounded-full text-sm font-bold">BUY ON AMAZON</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-  <!-- Gaming -->
-  <section id="gaming" class="py-20 bg-black/90">
-    <div class="max-w-6xl mx-auto px-4">
-      <h2 class="diggem-font text-4xl mb-12 text-center text-white" data-aos="fade-up">GAMING VIBES</h2>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        <!-- Video 1 -->
-        <div class="bg-gray-900 rounded-lg overflow-hidden shadow-lg" data-aos="fade-up" data-aos-delay="100">
-          <iframe class="w-full h-64" src="https://www.youtube.com/embed/ukKqVnNYLvE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-          <div class="p-6">
-            <h3 class="diggem-font text-2xl text-white mb-2">COD: WW2 Gameplay</h3>
-            <p class="text-gray-400 mb-4">Watch the chaos unfold in Call of Duty: WWII.</p>
-            <a href="https://www.youtube.com/watch?v=ukKqVnNYLvE" target="_blank" class="text-cyan-400 hover:text-white">Watch Full Video</a>
-          </div>
-        </div>
-        <!-- Video 2 -->
-        <div class="bg-gray-900 rounded-lg overflow-hidden shadow-lg" data-aos="fade-up" data-aos-delay="200">
-          <iframe class="w-full h-64" src="https://www.youtube.com/embed/ZfT4tvOWYkk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-          <div class="p-6">
-            <h3 class="diggem-font text-2xl text-white mb-2">Project Cars Racing</h3>
-            <p class="text-gray-400 mb-4">High-speed fails and epic turns.</p>
-            <a href="https://www.youtube.com/watch?v=ZfT4tvOWYkk" target="_blank" class="text-cyan-400 hover:text-white">Watch Full Video</a>
-          </div>
-        </div>
-        <!-- Video 3 -->
-        <div class="bg-gray-900 rounded-lg overflow-hidden shadow-lg" data-aos="fade-up" data-aos-delay="300">
-          <iframe class="w-full h-64" src="https://www.youtube.com/embed/wIxmxCXI2v" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-          <div class="p-6">
-            <h3 class="diggem-font text-2xl text-white mb-2">Stormtrooper School of Shooting</h3>
-            <p class="text-gray-400 mb-4">Star Wars gaming with a twist.</p>
-            <a href="https://www.youtube.com/watch?v=wIxmxCXI2v" target="_blank" class="text-cyan-400 hover:text-white">Watch Full Video</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-  <!-- Blog -->
-  <section id="blog" class="py-20 bg-black/90">
-    <div class="max-w-6xl mx-auto px-4">
-      <h2 class="diggem-font text-4xl mb-12 text-center text-white" data-aos="fade-up">BLOG</h2>
-      <p class="text-center text-gray-400">Coming soon: Stories from the grind.</p>
-    </div>
-  </section>
-  <!-- About -->
-  <section id="about" class="py-20 bg-black/90">
-    <div class="max-w-6xl mx-auto px-4">
-      <h2 class="diggem-font text-4xl mb-12 text-center text-white" data-aos="fade-up">ABOUT</h2>
-      <p class="text-center text-gray-400">The Diggem: Fusing streetwear, gaming, and lifestyle into one epic vibe.</p>
-    </div>
-  </section>
-  <footer class="bg-black py-12 border-t border-gray-800 text-center text-gray-500">
-    <p>© <span id="year"></span> The Diggem. All rights reserved.</p>
-  </footer>
-  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
   <script>
-    AOS.init({ duration: 800, easing: 'ease-in-out', once: true });
-    if (window.feather) feather.replace();
-    window.addEventListener('load', () => {
-      if (window.VANTA && window.THREE) {
-        VANTA.GLOBE({ el: "#vanta-bg", color: 0x9400d3, backgroundColor: 0x0 });
-      }
-    });
-    document.getElementById('menuBtn').addEventListener('click', () => {
-      document.getElementById('mobileMenu').classList.toggle('hidden');
-    });
-    document.getElementById('year').textContent = new Date().getFullYear();
+    // Dynamic Year
+    document.getElementById('y').textContent = new Date().getFullYear();
+    // Scroll Fade-In Observer (performant, vanilla JS)
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
   </script>
 </body>
 </html>

@@ -3,163 +3,52 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="The Diggem: Clean Texas mysteries, eerie tales, and Lone Star vibes. Shop merch and explore stories.">
-  <meta property="og:title" content="The Diggem — Texas • Clean • Real">
-  <meta property="og:description" content="Basic Texas-themed hub for stories, merch, and more. Built to expand.">
-  <meta property="og:image" content="/images/hero-texas-sunset.jpg">
-  <title>The Diggem — Texas • Clean • Real</title>
+  <title>The Diggem — Texas • Eerie • Real</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Atkinson+Hyperlegible:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Atkinson+Hyperlegible:wght@400;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --mesquite: #0B0B0B; /* Deep Texas night */
-      --dusk: #3A2E2A; /* Sunset dusk */
-      --bone: #EDE7DF; /* Bone white for text */
-      --sage: #7C8A7A; /* Sagebrush green */
-      --chili: #B03A2E; /* Chili red for accents */
+      --mesquite:#0B0B0B; --bone:#EDE7DF; --chili:#B03A2E;
     }
-    body { background: var(--mesquite); color: var(--bone); font-family: "Atkinson Hyperlegible", system-ui, sans-serif; }
-    .tx-heading { font-family: "Cinzel", serif; letter-spacing: .02em; }
-    .grain { background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="160" height="160"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="2" stitchTiles="stitch"/></filter><rect width="100%" height="100%" filter="url(%23n)" opacity="0.035"/></svg>'); }
+    body { background:var(--mesquite); color:var(--bone); font-family:"Atkinson Hyperlegible", sans-serif; }
+    .hheading { font-family:"Cinzel", serif; }
   </style>
 </head>
 <body class="antialiased">
-  <!-- HEADER: Simple fixed nav -->
-  <header class="fixed inset-x-0 top-0 z-50 bg-[var(--mesquite)]/90 backdrop-blur border-b border-white/10" role="banner">
-    <div class="mx-auto max-w-6xl px-4 h-16 flex items-center justify-between">
-      <a href="/" class="tx-heading text-xl tracking-wide text-[var(--bone)] hover:text-[var(--chili)] transition-colors" aria-label="Home">THE DIGGEM</a>
-      <nav class="hidden md:flex items-center gap-6 text-sm" role="navigation">
-        <a href="#pillars" class="text-[var(--bone)] hover:text-[var(--sage)] focus:outline-none focus:ring-2 focus:ring-[var(--sage)]" aria-label="Sections">Texas</a>
-        <a href="#stories" class="text-[var(--bone)] hover:text-[var(--sage)] focus:outline-none focus:ring-2 focus:ring-[var(--sage)]" aria-label="Stories">Stories</a>
-        <a href="#shop" class="text-[var(--bone)] hover:text-[var(--sage)] focus:outline-none focus:ring-2 focus:ring-[var(--sage)]" aria-label="Shop">Shop</a>
-        <a href="#youtube" class="text-[var(--bone)] hover:text-[var(--sage)] focus:outline-none focus:ring-2 focus:ring-[var(--sage)]" aria-label="YouTube">Echoes</a>
+
+  <!-- Header -->
+  <header class="bg-black/70 border-b border-white/10">
+    <div class="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
+      <a href="/" class="hheading text-xl">THE DIGGEM</a>
+      <nav class="space-x-4 text-sm hidden md:block">
+        <a href="#about" class="hover:text-[--chili]">About</a>
+        <a href="#shop" class="hover:text-[--chili]">Shop</a>
+        <a href="#contact" class="hover:text-[--chili]">Contact</a>
       </nav>
-      <a href="#newsletter" class="text-xs px-3 py-1.5 rounded-full border border-white/20 hover:border-[var(--sage)] transition-colors focus:outline-none focus:ring-2 focus:ring-[var(--sage)]" aria-label="Join Newsletter">Join List</a>
     </div>
   </header>
 
-  <!-- HERO: Full-width Texas sunset vibe -->
-  <section class="relative min-h-[85vh] flex items-end grain" id="hero" style="background: linear-gradient(to bottom, var(--mesquite), transparent), url('/images/hero-texas-sunset.jpg'); background-size: cover; background-position: center;">
-    <div class="absolute inset-0 bg-gradient-to-t from-[var(--mesquite)] via-black/40 to-transparent"></div>
-    <div class="relative mx-auto max-w-6xl px-4 pb-24">
-      <h1 class="tx-heading text-4xl md:text-6xl font-bold max-w-3xl text-[var(--bone)]">Texas. Clean. Yours to Build.</h1>
-      <p class="mt-4 max-w-2xl text-[1.05rem] text-white/85">A basic Lone Star canvas: Mysteries, merch, echoes. Add your stories here.</p>
-      <div class="mt-8 flex flex-wrap gap-3">
-        <a href="#stories" class="px-5 py-3 rounded-lg bg-[var(--chili)] hover:bg-red-700 text-white font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-[var(--chili)]" aria-label="Explore Stories">Start with Tales</a>
-        <a href="#shop" class="px-5 py-3 rounded-lg border border-white/25 hover:border-[var(--sage)] text-white transition-colors focus:outline-none focus:ring-2 focus:ring-white/50" aria-label="View Shop">Browse Threads</a>
+  <!-- Hero -->
+  <section class="relative min-h-[70vh] flex items-center justify-center text-center">
+    <img src="/images/texas-night-highway.jpg" alt="Texas highway at night" class="absolute inset-0 w-full h-full object-cover opacity-60">
+    <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent"></div>
+    <div class="relative z-10 max-w-2xl px-4">
+      <h1 class="hheading text-4xl md:text-6xl font-bold">Texas • Eerie • Real</h1>
+      <p class="mt-4 text-lg text-white/80">Stories from the road, threads with a pulse.</p>
+      <div class="mt-6 flex gap-4 justify-center">
+        <a href="#shop" class="px-5 py-3 bg-[--chili] rounded-lg font-semibold">Shop</a>
+        <a href="#about" class="px-5 py-3 border border-white/30 rounded-lg">Learn More</a>
       </div>
     </div>
   </section>
 
-  <!-- PILLARS: Quick nav to expandable sections -->
-  <section class="mx-auto max-w-6xl px-4 py-16 grid md:grid-cols-4 gap-6 grain" id="pillars">
-    <div class="block rounded-2xl border border-white/10 p-6 hover:bg-white/5 transition-colors">
-      <h3 class="tx-heading text-2xl mb-2 text-[var(--bone)]">Texas Roots</h3>
-      <p class="text-white/80">About the badlands that inspire it all.</p>
-      <div class="mt-4 text-sm text-[var(--sage)] hover:underline transition-colors">Expand →</div>
-    </div>
-    <div class="block rounded-2xl border border-white/10 p-6 hover:bg-white/5 transition-colors">
-      <h3 class="tx-heading text-2xl mb-2 text-[var(--bone)]">Mysteries</h3>
-      <p class="text-white/80">Eerie tales from the Lone Star.</p>
-      <div class="mt-4 text-sm text-[var(--sage)] hover:underline transition-colors">Dive In →</div>
-    </div>
-    <div class="block rounded-2xl border border-white/10 p-6 hover:bg-white/5 transition-colors">
-      <h3 class="tx-heading text-2xl mb-2 text-[var(--bone)]">Threads</h3>
-      <p class="text-white/80">Texas-inspired merch drops.</p>
-      <div class="mt-4 text-sm text-[var(--sage)] hover:underline transition-colors">Shop Now →</div>
-    </div>
-    <div class="block rounded-2xl border border-white/10 p-6 hover:bg-white/5 transition-colors">
-      <h3 class="tx-heading text-2xl mb-2 text-[var(--bone)]">Echoes</h3>
-      <p class="text-white/80">YouTube clips & gaming vibes.</p>
-      <div class="mt-4 text-sm text-[var(--sage)] hover:underline transition-colors">Watch →</div>
-    </div>
-  </section>
-
-  <!-- STORIES TEASER: Basic grid; add full pages later -->
-  <section id="stories" class="mx-auto max-w-6xl px-4 py-16 grain">
-    <h2 class="tx-heading text-4xl text-center mb-12 text-[var(--bone)]">Lone Star Teasers</h2>
-    <div class="grid md:grid-cols-3 gap-8">
-      <article class="rounded-2xl border border-white/10 p-6 bg-[var(--dusk)]/50 hover:bg-[var(--dusk)]/70 transition-colors">
-        <img src="/images/story-1.jpg" alt="Texas desert mystery teaser" class="w-full h-48 object-cover rounded-lg mb-4" loading="lazy">
-        <h3 class="tx-heading text-xl mb-2 text-[var(--bone)]">Marfa Lights</h3>
-        <p class="text-white/80 mb-4">A hiker vanishes under glowing orbs. Add your twist here.</p>
-        <a href="/stories/marfa.html" class="text-[var(--chili)] hover:underline transition-colors">Read More</a>
-      </article>
-      <!-- Duplicate for more; e.g., Big Bend, Ghost Road -->
-      <article class="rounded-2xl border border-white/10 p-6 bg-[var(--dusk)]/50 hover:bg-[var(--dusk)]/70 transition-colors md:translate-y-4">
-        <img src="/images/story-2.jpg" alt="Big Bend vanishing teaser" class="w-full h-48 object-cover rounded-lg mb-4" loading="lazy">
-        <h3 class="tx-heading text-xl mb-2 text-[var(--bone)]">Big Bend Echo</h3>
-        <p class="text-white/80 mb-4">Tracks to nowhere. Build on this base.</p>
-        <a href="/stories/bigbend.html" class="text-[var(--chili)] hover:underline transition-colors">Read More</a>
-      </article>
-      <article class="rounded-2xl border border-white/10 p-6 bg-[var(--dusk)]/50 hover:bg-[var(--dusk)]/70 transition-colors">
-        <img src="/images/story-3.jpg" alt="Ghost road tale teaser" class="w-full h-48 object-cover rounded-lg mb-4" loading="lazy">
-        <h3 class="tx-heading text-xl mb-2 text-[var(--bone)]">Ghost Road</h3>
-        <p class="text-white/80 mb-4">Hitcher in the mirror. Easy to expand.</p>
-        <a href="/stories/ghostroad.html" class="text-[var(--chili)] hover:underline transition-colors">Read More</a>
-      </article>
-    </div>
-  </section>
-
-  <!-- SHOP: Basic cards with Amazon placeholders -->
-  <section id="shop" class="mx-auto max-w-6xl px-4 py-16 bg-[var(--dusk)]/20 grain">
-    <h2 class="tx-heading text-4xl text-center mb-12 text-[var(--bone)]">Texas Threads</h2>
-    <div class="grid md:grid-cols-3 gap-8">
-      <div class="text-center rounded-2xl border border-white/10 p-6">
-        <img src="/images/merch-tee.jpg" alt="Basic Texas tee placeholder" class="mx-auto w-48 h-48 object-cover rounded-lg mb-4" loading="lazy">
-        <h3 class="text-xl mb-2 text-[var(--bone)]">Lone Star Tee</h3>
-        <p class="text-white/80 mb-4">Clean canvas for your designs.</p>
-        <a href="https://amazon.com/dp/[YOUR_ASIN_1]" target="_blank" rel="noopener sponsored" class="block bg-[var(--chili)] text-white px-6 py-3 rounded-lg hover:bg-red-700 mx-auto w-fit transition-colors">$29 → Add to Cart</a>
-      </div>
-      <!-- Duplicate for 2 more merch items -->
-    </div>
-  </section>
-
-  <!-- YOUTUBE: Basic embeds; expand with channels -->
-  <section id="youtube" class="mx-auto max-w-6xl px-4 py-16 grain">
-    <h2 class="tx-heading text-4xl text-center mb-12 text-[var(--bone)]">Texas Echoes</h2>
-    <div class="grid md:grid-cols-2 gap-8">
-      <div class="bg-[var(--dusk)]/50 rounded-2xl overflow-hidden">
-        <iframe width="100%" height="315" src="https://www.youtube.com/embed/[VIDEO_ID_1]?rel=0" title="Texas Tale 1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
-        <div class="p-4 text-center">
-          <a href="https://youtube.com/channel/[CHANNEL_1]" target="_blank" rel="noopener" class="text-[var(--sage)] hover:underline block transition-colors">Channel 1: Mysteries</a>
-        </div>
-      </div>
-      <div class="bg-[var(--dusk)]/50 rounded-2xl overflow-hidden md:translate-y-4">
-        <iframe width="100%" height="315" src="https://www.youtube.com/embed/[VIDEO_ID_2]?rel=0" title="Texas Tale 2" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
-        <div class="p-4 text-center">
-          <a href="https://youtube.com/channel/[CHANNEL_2]" target="_blank" rel="noopener" class="text-[var(--sage)] hover:underline block transition-colors">Channel 2: Echoes</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- FOOTER: Basic with newsletter -->
-  <footer class="border-t border-white/10 grain" role="contentinfo">
-    <div class="mx-auto max-w-6xl px-4 py-10 text-center text-sm">
-      <div class="mb-4">
-        <div class="tx-heading text-xl mb-2 text-[var(--bone)]">The Diggem</div>
-        <p class="text-white/70 mb-4">Clean Texas base. Add your mark.</p>
-      </div>
-      <form id="newsletter" class="flex flex-col sm:flex-row gap-2 max-w-md mx-auto mb-4" aria-label="Newsletter Signup">
-        <input type="email" placeholder="you@domain.com" class="flex-1 rounded-lg px-3 py-2 bg-white/10 placeholder-white/40 text-[var(--bone)] focus:outline-none focus:ring-2 focus:ring-[var(--sage)]" required>
-        <button type="submit" class="px-4 py-2 rounded-lg bg-[var(--chili)] hover:bg-red-700 text-white transition-colors focus:outline-none focus:ring-2 focus:ring-[var(--chili)]">Join</button>
-      </form>
-      <div class="text-white/60">© <span id="year"></span> The Diggem — Texas</div>
-    </div>
+  <!-- Footer -->
+  <footer class="border-t border-white/10 py-6 text-center text-sm text-white/60">
+    © <span id="y"></span> The Diggem — Texas
   </footer>
 
   <script>
-    // Dynamic year
-    document.getElementById('year').textContent = new Date().getFullYear();
-    // Smooth scroll for anchors (basic add-on)
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        document.querySelector(this.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
-      });
-    });
+    document.getElementById('y').textContent = new Date().getFullYear();
   </script>
 </body>
 </html>

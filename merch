@@ -1,1 +1,127 @@
 
+<!-- merch.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>The Diggem Merch | All Amazon Products</title>
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;700&display=swap" rel="stylesheet" />
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- AOS -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+  <!-- Feather Icons -->
+  <script src="https://unpkg.com/feather-icons" defer></script>
+  <!-- Three.js + Vanta -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.globe.min.js" defer></script>
+  <style>
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background-color: #0a0a0a;
+      color: #f5f5f5;
+    }
+    .diggem-font { font-family: 'Bebas Neue', sans-serif; letter-spacing: 2px; }
+    .glow { text-shadow: 0 0 10px #ff00ff, 0 0 20px #00ffff; }
+    .bg-grid {
+      background-image:
+        linear-gradient(rgba(255,0,255,0.08) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,0,255,0.08) 1px, transparent 1px);
+      background-size: 40px 40px;
+    }
+  </style>
+</head>
+<body class="min-h-screen">
+  <div id="vanta-bg" class="fixed inset-0 -z-10 opacity-20"></div>
+  <!-- Nav -->
+  <nav class="bg-black/80 sticky top-0 z-50 border-b border-purple-500">
+    <div class="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
+      <a href="index.html" class="diggem-font text-2xl text-white hover:text-purple-400">THE DIGGEM</a>
+      <div id="mainMenu" class="hidden md:flex items-center space-x-8">
+        <a href="index.html" class="text-white hover:text-cyan-400">HOME</a>
+        <a href="index.html#shop" class="text-white hover:text-cyan-400">SHOP</a>
+        <a href="index.html#gaming" class="text-white hover:text-cyan-400">GAMING</a>
+        <a href="index.html#blog" class="text-white hover:text-cyan-400">BLOG</a>
+        <a href="index.html#about" class="text-white hover:text-cyan-400">ABOUT</a>
+      </div>
+      <button id="menuBtn" class="md:hidden text-white"><i data-feather="menu"></i></button>
+    </div>
+    <div id="mobileMenu" class="md:hidden hidden flex-col bg-black/95 rounded-lg p-4 space-y-4 shadow-lg">
+      <a href="index.html" class="text-white hover:text-cyan-400">HOME</a>
+      <a href="index.html#shop" class="text-white hover:text-cyan-400">SHOP</a>
+      <a href="index.html#gaming" class="text-white hover:text-cyan-400">GAMING</a>
+      <a href="index.html#blog" class="text-white hover:text-cyan-400">BLOG</a>
+      <a href="index.html#about" class="text-white hover:text-cyan-400">ABOUT</a>
+    </div>
+  </nav>
+  <!-- Merch Gallery -->
+  <section class="py-20 bg-black/90">
+    <div class="max-w-6xl mx-auto px-4">
+      <h2 class="diggem-font text-4xl mb-12 text-center text-white" data-aos="fade-up">ALL DIGGEM MERCH</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+        <!-- Product 1 -->
+        <a href="https://www.amazon.com/The-Diggem-Clothing-Dragon-T-Shirt/dp/B0CT2NBS75" target="_blank">
+          <img src="https://via.placeholder.com/400x400/000000/FFFFFF?text=Dragon+Slayer+T-Shirt" alt="Dragon Slayer T-Shirt" class="w-full h-auto object-cover rounded-lg shadow-lg hover:opacity-80 transition-opacity">
+        </a>
+        <!-- Product 2 -->
+        <a href="https://www.amazon.com/The-Diggem-Clothing-Dragon-Pullover/dp/B0CW1WC7QN" target="_blank">
+          <img src="https://via.placeholder.com/400x400/000000/00FFFF?text=Dragon+Slayer+Pullover+Hoodie" alt="Dragon Slayer Pullover Hoodie" class="w-full h-auto object-cover rounded-lg shadow-lg hover:opacity-80 transition-opacity">
+        </a>
+        <!-- Product 3 -->
+        <a href="https://www.amazon.com/The-Diggem-Clothing-Vampire-T-Shirt/dp/B0FNCSKFW3" target="_blank">
+          <img src="https://via.placeholder.com/400x400/000000/FF00FF?text=Vampire+Night+T-Shirt" alt="Vampire Night T-Shirt" class="w-full h-auto object-cover rounded-lg shadow-lg hover:opacity-80 transition-opacity">
+        </a>
+        <!-- Product 4 -->
+        <a href="https://www.amazon.com/The-Diggem-Clothing-Premium-T-Shirt/dp/B0DKBQJL3T" target="_blank">
+          <img src="https://via.placeholder.com/400x400/000000/FFFFFF?text=The+Diggem+Premium+T-Shirt" alt="The Diggem Premium T-Shirt" class="w-full h-auto object-cover rounded-lg shadow-lg hover:opacity-80 transition-opacity">
+        </a>
+        <!-- Product 5 -->
+        <a href="https://www.amazon.com/The-Diggem-Clothing-malfeasances-T-Shirt/dp/B0CWWYYHTH" target="_blank">
+          <img src="https://via.placeholder.com/400x400/000000/00FFFF?text=For+malfeasance%27s+sake.+T-Shirt" alt="For malfeasance's sake. T-Shirt" class="w-full h-auto object-cover rounded-lg shadow-lg hover:opacity-80 transition-opacity">
+        </a>
+        <!-- Product 6 -->
+        <a href="https://www.amazon.com/The-Diggem-Clothing-Game-T-Shirt/dp/B0CSYN2LTJ" target="_blank">
+          <img src="https://via.placeholder.com/400x400/000000/FF00FF?text=Game+Over+T-Shirt" alt="Game Over T-Shirt" class="w-full h-auto object-cover rounded-lg shadow-lg hover:opacity-80 transition-opacity">
+        </a>
+        <!-- Product 7 -->
+        <a href="https://www.amazon.com/The-Diggem-Clothing-Dragon-Slayer/dp/B0CW1XZVMD" target="_blank">
+          <img src="https://via.placeholder.com/400x400/000000/FFFFFF?text=Dragon+Slayer+Zip+Hoodie" alt="Dragon Slayer Zip Hoodie" class="w-full h-auto object-cover rounded-lg shadow-lg hover:opacity-80 transition-opacity">
+        </a>
+        <!-- Product 8 -->
+        <a href="https://www.amazon.com/The-Diggem-Clothing-Just-T-Shirt/dp/B0DB9567LQ" target="_blank">
+          <img src="https://via.placeholder.com/400x400/000000/00FFFF?text=Just+the+tip%3F+T-Shirt" alt="Just the tip? T-Shirt" class="w-full h-auto object-cover rounded-lg shadow-lg hover:opacity-80 transition-opacity">
+        </a>
+        <!-- Product 9 -->
+        <a href="https://www.amazon.com/Retro-Space-Explorers-Vintage-Sci-Fi/dp/B0FP55JVYG" target="_blank">
+          <img src="https://via.placeholder.com/400x400/000000/FF00FF?text=Retro+Space+Explorers" alt="Retro Space Explorers – Vintage Sci-Fi Pulp Art Zip" class="w-full h-auto object-cover rounded-lg shadow-lg hover:opacity-80 transition-opacity">
+        </a>
+        <!-- Product 10 -->
+        <a href="https://www.amazon.com/The-Diggem-Clothing-Dragon-Slayer/dp/B0CW1SCG6Z" target="_blank">
+          <img src="https://via.placeholder.com/400x400/000000/FFFFFF?text=Dragon+Slayer+Tank+Top" alt="Dragon Slayer Tank Top" class="w-full h-auto object-cover rounded-lg shadow-lg hover:opacity-80 transition-opacity">
+        </a>
+      </div>
+    </div>
+  </section>
+  <footer class="bg-black py-12 border-t border-gray-800 text-center text-gray-500">
+    <p>© <span id="year"></span> The Diggem. All rights reserved.</p>
+  </footer>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init({ duration: 800, easing: 'ease-in-out', once: true });
+    if (window.feather) feather.replace();
+    window.addEventListener('load', () => {
+      if (window.VANTA && window.THREE) {
+        VANTA.GLOBE({ el: "#vanta-bg", color: 0x9400d3, backgroundColor: 0x0 });
+      }
+    });
+    document.getElementById('menuBtn').addEventListener('click', () => {
+      document.getElementById('mobileMenu').classList.toggle('hidden');
+    });
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Chronovisor — single-file</title>
+<style>
+  :root {
+    --bg:#121212; --panel:#1e1e1e; --fg:#e0e0e0; --muted:#888; --border:#333; --btn:#333; --btnh:#444; --accent:#ff5252;
+  }
+  * { box-sizing:border-box }
+  html,body { height:100%; margin:0; }
+  body {
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+    background:var(--bg); color:var(--fg); display:flex; flex-direction:column; overflow:hidden;
+  }
+  header {
+    position:sticky; top:0; z-index:5; background:var(--panel); border-bottom:1px solid var(--border);
+    padding:10px 16px; display:flex; align-items:center; justify-content:space-between; gap:12px;
+  }
+  h1 { margin:0; font-size:18px; letter-spacing:.5px; }
+  .header-buttons { display:flex; align-items:center; gap:8px; }
+  button {
+    background:var(--btn); color:var(--fg); border:1px solid #444; padding:8px 12px; cursor:pointer; border-radius:8px;
+    transition:background .15s,border .15s,transform .02s;
+  }
+  button:active { transform:translateY(1px) }
+  button:hover { background:var(--btnh) }
+  .pill { padding:6px 10px; border-radius:999px; font-size:12px; }
+  .rec { color:#fff; background:#b00020; border-color:#c22; }
+  .hidden { display:none }
+  .container { display:flex; flex:1; min-height:0; }
+  aside {
+    width:280px; background:var(--panel); border-right:1px solid var(--border); padding:16px; overflow:auto;
+  }
+  aside h2 { margin:16px 0 8px; font-size:14px; color:#ddd; }
+  label { display:flex; align-items:center; justify-content:space-between; gap:8px; margin:6px 0; font-size:13px; }
+  input[type="number"], input[type="range"], select, input[type="text"] {
+    flex:1; background:#2b2b2b; color:var(--fg); border:1px solid #444; padding:6px 8px; border-radius:6px;
+  }
+  input[type="range"]{ padding:0 }
+  .row { display:flex; gap:8px; }
+  .row > * { flex:1 }
+  main { flex:1; display:flex; align-items:center; justify-content:center; overflow:hidden; position:relative; }
+  canvas { background:#000; max-width:100%; max-height:100%; }
+  #error { color:var(--accent); font-size:12px; margin-top:8px; min-height:1.2em; }
+  #fps { color:var(--muted); font-size:12px; margin-top:8px; }
+  .subtle { color:var(--muted); font-size:12px; }
+  .toolbar { display:flex; gap:8px; align-items:center; }
+</style>
+</head>
+<body>
+  <header>
+    <h1>Chronovisor</h1>
+    <div class="header-buttons">
+      <button id="snapshotBtn" title="Snapshot (S)">
+        📸 Snapshot
+      </button>
+      <button id="recordBtn" class="pill" title="Record (R)">● Record</button>
+      <div id="recLight" class="pill rec hidden">Recording <span id="recTime">00:00</span></div>
+    </div>
+  </header>
+
+  <div class="container">
+    <aside aria-label="Controls">
+      <section>
+        <h2>Source</h2>
+        <div class="toolbar">
+          <button id="camBtn">Enable Webcam</button>
+          <button id="playBtn" title="Play/Pause (Space)">Play/Pause</button>
+        </div>
+        <label>Upload Video<input id="fileInput" type="file" accept="video/*"></label>
+        <div class="subtle">Drag & drop a video onto the canvas.</div>
+      </section>
+
+      <section>
+        <h2>Trail</h2>
+        <label>Buffer Length
+          <input id="bufLen" type="number" min="10" max="512" value="180">
+        </label>
+        <label>Half-Life (ms)
+          <input id="halfLife" type="number" min="100" max="8000" value="1200">
+        </label>
+        <label>Stride
+          <input id="stride" type="number" min="1" max="16" value="2">
+        </label>
+        <label>Blend
+          <select id="blend">
+            <option value="normal">Normal</option>
+            <option value="add">Add</option>
+            <option value="screen" selected>Screen</option>
+            <option value="multiply">Multiply</option>
+            <option value="lighten">Lighten</option>
+            <option value="darken">Darken</option>
+          </select>
+        </label>
+      </section>
+
+      <section>
+        <h2>Geometry</h2>
+        <label>Enable Helix <input id="helix" type="checkbox" checked></label>
+        <div class="row">
+          <label>Center X<input id="cx" type="number" step="0.001" min="0" max="1" value="0.5"></label>
+          <label>Center Y<input id="cy" type="number" step="0.001" min="0" max="1" value="0.5"></label>
+        </div>
+        <label>Angular Step (rad)
+          <input id="ang" type="number" step="0.001" value="0.015">
+        </label>
+        <label>Radial Gain (px)
+          <input id="rad" type="number" step="0.001" value="0.002">
+        </label>
+        <label>Direction
+          <select id="dir">
+            <option value="1">CW</option>
+            <option value="-1">CCW</option>
+          </select>
+        </label>
+      </section>
+
+      <section>
+        <h2>Effects</h2>
+        <label>Exposure
+          <input id="exp" type="range" min="-2" max="2" step="0.1" value="0">
+        </label>
+        <label>Contrast
+          <input id="con" type="range" min="0" max="2" step="0.1" value="1">
+        </label>
+        <label>Saturation
+          <input id="sat" type="range" min="0" max="2" step="0.1" value="1">
+        </label>
+        <label>Temperature
+          <input id="tmp" type="range" min="-1" max="1" step="0.1" value="0">
+        </label>
+        <label>Vignette
+          <input id="vig" type="range" min="0" max="1" step="0.05" value="0.2">
+        </label>
+        <label>Vignette Soft
+          <input id="vigs" type="range" min="0.1" max="1" step="0.05" value="0.5">
+        </label>
+        <label>Glow
+          <input id="glow" type="range" min="0" max="1" step="0.05" value="0.1">
+        </label>
+      </section>
+
+      <section>
+        <h2>Slit-Scan</h2>
+        <label>Enable <input id="slit" type="checkbox"></label>
+        <label>Orientation
+          <select id="slito">
+            <option value="horizontal">Horizontal</option>
+            <option value="vertical">Vertical</option>
+          </select>
+        </label>
+        <div class="row">
+          <label>Band W<input id="bandw" type="number" min="1" value="10"></label>
+          <label>Step<input id="bands" type="number" min="1" value="5"></label>
+        </div>
+      </section>
+
+      <section>
+        <h2>Quality</h2>
+        <label>Target FPS
+          <input id="fpsTarget" type="number" min="10" max="60" value="30">
+        </label>
+        <label>Resolution
+          <select id="scale">
+            <option value="1">1.0</option>
+            <option value="0.75">0.75</option>
+            <option value="0.5">0.5</option>
+          </select>
+        </label>
+        <label>Renderer
+          <select id="rend">
+            <option value="webgl">WebGL</option>
+            <option value="canvas">Canvas</option>
+          </select>
+        </label>
+      </section>
+
+      <section>
+        <h2>Export</h2>
+        <label>Bitrate (Mbps)
+          <input id="br" type="number" min="2" max="20" value="8">
+        </label>
+        <button id="resetBtn">Reset</button>
+        <div id="error" aria-live="polite"></div>
+        <div id="fps" aria-live="polite">FPS: 0</div>
+      </section>
+    </aside>
+
+    <main>
+      <canvas id="cvs" aria-label="Visualization Canvas"></canvas>
+    </main>
+  </div>
+
+  <!-- ====== Shaders (inline, no fetch) ====== -->
+  <script id="vs" type="x-shader/x-vertex">
+#version 300 es
+precision highp float;
+layout(location=0) in vec2 position;
+out vec2 vUV;
+void main(){
+  vUV = (position + 1.0) * 0.5;
+  gl_Position = vec4(position,0.0,1.0);
+}
+  </script>
+
+  <script id="common.glsl" type="x-shader/x-fragment">
+#version 300 es
+precision highp float;
+
+vec3 blend_(vec3 a, vec3 b, int mode){
+  if(mode==0) return b;
+  if(mode==1) return a + b;
+  if(mode==2) return a + b - a*b;
+  if(mode==3) return a*b;
+  if(mode==4) return max(a,b);
+  if(mode==5) return min(a,b);
+  return b;
+}
+vec3 tonemap_(vec3 c){ return c/(c+1.0); }
+vec3 curve_(vec3 c){
+  c = clamp(c,0.0,1.0);
+  return c*(0.5+0.5*c*(3.0-2.0*c));
+}
+float vignette_(vec2 uv,float strength,float soft){
+  vec2 p = abs(uv*2.0-1.0);
+  float d = max(p.x,p.y);
+  float v = 1.0 - strength * pow(d, 1.0/max(soft,0.001));
+  return clamp(v,0.0,1.0);
+}
+vec3 glow_(vec3 c,float k){ return c*(1.0+k); }
+  </script>
+
+  <script id="fs" type="x-shader/x-fragment">
+#version 300 es
+precision highp float;
+
+uniform sampler2DArray frameArray;
+uniform int historyLength;
+uniform float halfLifeSeconds;
+uniform int stride;
+uniform int blendMode;
+
+uniform int helixEnable;
+uniform vec2 center; // 0..1
+uniform float angularStep;
+uniform float radialGain;
+uniform int slitScanEnable;
+uniform int slitScanOrientation; // 0 H, 1 V
+uniform float bandWidth;
+uniform float bandStep;
+
+uniform float exposure;
+uniform float contrast;
+uniform float saturation;
+uniform float temperature;
+uniform float vignetteStrength;
+uniform float vignetteSoftness;
+uniform float glow;
+uniform vec2 resolution;
+
+in vec2 vUV;
+out vec4 fragColor;
+
+// from common (linked at compile time by string concat)
+vec3 blend_(vec3, vec3, int);
+vec3 tonemap_(vec3);
+vec3 curve_(vec3);
+float vignette_(vec2, float, float);
+vec3 glow_(vec3, float);
+
+void main(){
+  vec3 accum = vec3(0.0);
+
+  float bandWNormX = bandWidth / max(resolution.x,1.0);
+  float bandWNormY = bandWidth / max(resolution.y,1.0);
+  float stepNormX  = bandStep  / max(resolution.x,1.0);
+  float stepNormY  = bandStep  / max(resolution.y,1.0);
+
+  float frameDt = 1.0/30.0;
+  float decayBase = pow(0.5, frameDt / max(halfLifeSeconds, 1e-4));
+
+  for(int i=historyLength-1; i>=0; i-=stride){
+    float fi = float(i);
+    vec2 uv = vUV;
+
+    if(helixEnable==1){
+      float ang = fi * angularStep;
+      float rpx = fi * radialGain / max(max(resolution.x,resolution.y),1.0);
+      vec2 rel = uv - center;
+      float r = length(rel) + rpx;
+      float th = atan(rel.y, rel.x) + ang;
+      uv = center + vec2(r*cos(th), r*sin(th));
+    }
+
+    if(slitScanEnable==1){
+      if(slitScanOrientation==0){
+        uv.x = fract(uv.x + fi * stepNormX);
+      } else {
+        uv.y = fract(uv.y + fi * stepNormY);
+      }
+    }
+
+    uv = clamp(uv, 0.0, 1.0);
+    vec3 col = texture(frameArray, vec3(uv, float(i))).rgb;
+
+    float a = pow(decayBase, float(historyLength-1-i));
+    accum = blend_(accum, col * a, blendMode);
+  }
+
+  // post
+  accum *= pow(2.0, exposure);
+  accum = (accum - 0.5)*contrast + 0.5;
+  float gray = dot(accum, vec3(0.299,0.587,0.114));
+  accum = mix(vec3(gray), accum, saturation);
+  accum.r *= 1.0 + temperature*0.5;
+  accum.b *= 1.0 - temperature*0.5;
+  accum *= vignette_(vUV, vignetteStrength, vignetteSoftness);
+  accum = glow_(accum, glow);
+  accum = curve_(accum);
+  accum = tonemap_(accum);
+  fragColor = vec4(clamp(accum,0.0,1.0), 1.0);
+}
+  </script>
+
+  <!-- ====== App (inline, no external deps) ====== -->
+  <script>
+(() => {
+  // --- State & persistence
+  const defaults = {
+    bufferLength: 180,
+    decayHalfLife: 1200,
+    stride: 2,
+    blendMode: 'screen',
+    helixEnable: true,
+    centerX: .5, centerY: .5,
+    angularStep: .015,
+    radialGain: .002,
+    spiralDirection: 1,
+    exposure: 0, contrast: 1, saturation: 1, temperature: 0,
+    vignetteStrength: .2, vignetteSoftness: .5, glow: .1,
+    slitScanEnable: false, slitScanOrientation: 'horizontal',
+    bandWidth: 10, bandStep: 5,
+    targetFPS: 30, resolutionScale: 1, rendererType: 'webgl',
+    bitrate: 8
+  };
+  let state = { ...defaults, ...(JSON.parse(localStorage.getItem('chronovisor-state')||'{}')) };
+  const saveState = () => localStorage.setItem('chronovisor-state', JSON.stringify(state));
+
+  // --- DOM refs
+  const $ = id => document.getElementById(id);
+  const cvs = $('cvs'), errBox = $('error'), fpsBox = $('fps');
+  const recordBtn = $('recordBtn'), recLight = $('recLight'), recTime = $('recTime');
+
+  // --- Video source
+  class VideoSource {
+    constructor(onFrame) {
+      this.onFrame = onFrame;
+      this.v = document.createElement('video');
+      this.v.muted = true; this.v.playsInline = true;
+      this.playing = false; this.webcam = false; this.stream = null;
+    }
+    async startCam(){
+      try{
+        this.stream = await navigator.mediaDevices.getUserMedia({ video:{ width:{ideal:1920}, height:{ideal:1080} }, audio:false });
+        this.v.srcObject = this.stream; this.webcam = true; await this.play();
+      } catch(e){ throw new Error('Webcam denied/unavailable.'); }
+    }
+    stopCam(){
+      this.stream?.getTracks().forEach(t=>t.stop()); this.stream=null; this.webcam=false; this.pause();
+    }
+    loadFile(file){
+      this.stopCam();
+      this.v.src = URL.createObjectURL(file);
+      this.play();
+    }
+    async play(){
+      if(!this.playing){ await this.v.play(); this.playing = true; this.loop(); }
+    }
+    pause(){ if(this.playing){ this.v.pause(); this.playing=false; } }
+    toggle(){ this.playing ? this.pause() : this.play(); }
+    loop = () => {
+      if(this.playing){
+        if(this.v.readyState >= 2){ this.onFrame(this.v); }
+        requestAnimationFrame(this.loop);
+      }
+    }
+  }
+
+  // --- Ring buffer (store frames as HTMLVideoElement refs)
+  class FrameRingBuffer {
+    constructor(n){ this.capacity=n; this.buffer=new Array(n); this.idx=0; this.count=0; }
+    push(frame){ this.buffer[this.idx]=frame; this.idx=(this.idx+1)%this.capacity; if(this.count<this.capacity) this.count++; }
+    // i=0 newest
+    get(i){ if(i>=this.count) return null; const k=(this.idx-1-i+this.capacity)%this.capacity; return this.buffer[k]; }
+    resize(n){ this.capacity=n; this.buffer=new Array(n); this.idx=0; this.count=0; }
+  }
+
+  // --- WebGL2 renderer with texture array
+  class RendererGL {
+    constructor(canvas){
+      this.canvas = canvas;
+      this.gl = canvas.getContext('webgl2', { antialias:false, alpha:false });
+      if(!this.gl) throw new Error('WebGL2 not supported');
+      this.maxLayers = Math.min(this.gl.getParameter(this.gl.MAX_ARRAY_TEXTURE_LAYERS) || 256, 512);
+      this.texW=0; this.texH=0; this.layers=0;
+
+      const vs = $('vs').textContent.trim();
+      const common = $('common.glsl').textContent.trim();
+      const fs = ($('fs').textContent.replace('#version 300 es','')).trim(); // we'll concat versions
+      const frag = `#version 300 es
+precision highp float;
+${common}
+${fs}`;
+      this.prog = this._makeProgram(vs, frag);
+      this._initPipeline();
+    }
+    _sh(obj, type, src){
+      const gl = this.gl, s = gl.createShader(type);
+      gl.shaderSource(s, src); gl.compileShader(s);
+      if(!gl.getShaderParameter(s, gl.COMPILE_STATUS)) throw new Error(gl.getShaderInfoLog(s));
+      return s;
+    }
+    _makeProgram(vsSrc, fsSrc){
+      const gl=this.gl, vs=this._sh(null, gl.VERTEX_SHADER, vsSrc), fs=this._sh(null, gl.FRAGMENT_SHADER, fsSrc);
+      const p = gl.createProgram(); gl.attachShader(p,vs); gl.attachShader(p,fs); gl.linkProgram(p);
+      if(!gl.getProgramParameter(p, gl.LINK_STATUS)) throw new Error(gl.getProgramInfoLog(p));
+      gl.deleteShader(vs); gl.deleteShader(fs); return p;
+    }
+    _initPipeline(){
+      const gl = this.gl;
+      // quad
+      this.vao = gl.createVertexArray(); gl.bindVertexArray(this.vao);
+      const buf = gl.createBuffer(); gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+      gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,-1,-1,1, 1,-1, 1,1]), gl.STATIC_DRAW);
+      gl.enableVertexAttribArray(0); gl.vertexAttribPointer(0,2,gl.FLOAT,false,0,0);
+
+      // uniforms
+      gl.useProgram(this.prog);
+      const u = n => gl.getUniformLocation(this.prog, n);
+      this.u = {
+        frameArray: u('frameArray'),
+        historyLength: u('historyLength'),
+        halfLifeSeconds: u('halfLifeSeconds'),
+        stride: u('stride'),
+        blendMode: u('blendMode'),
+        helixEnable: u('helixEnable'),
+        center: u('center'),
+        angularStep: u('angularStep'),
+        radialGain: u('radialGain'),
+        slitScanEnable: u('slitScanEnable'),
+        slitScanOrientation: u('slitScanOrientation'),
+        bandWidth: u('bandWidth'),
+        bandStep: u('bandStep'),
+        exposure: u('exposure'),
+        contrast: u('contrast'),
+        saturation: u('saturation'),
+        temperature: u('temperature'),
+        vignetteStrength: u('vignetteStrength'),
+        vignetteSoftness: u('vignetteSoftness'),
+        glow: u('glow'),
+        resolution: u('resolution'),
+      };
+
+      // texture array
+      this.tex = gl.createTexture();
+      gl.bindTexture(gl.TEXTURE_2D_ARRAY, this.tex);
+      gl.texParameteri(gl.TEXTURE_2D_ARRAY, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
+      gl.texParameteri(gl.TEXTURE_2D_ARRAY, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
+      gl.texParameteri(gl.TEXTURE_2D_ARRAY, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
+      gl.texParameteri(gl.TEXTURE_2D_ARRAY, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+    }
+    ensureArray(w,h,layers){
+      const gl = this.gl, L=Math.min(layers, this.maxLayers);
+      if(w!==this.texW || h!==this.texH || L!==this.layers){
+        this.texW=w; this.texH=h; this.layers=L;
+        gl.bindTexture(gl.TEXTURE_2D_ARRAY, this.tex);
+        gl.texImage3D(gl.TEXTURE_2D_ARRAY, 0, gl.RGBA8, w, h, L, 0, gl.RGBA, gl.UNSIGNED_BYTE, null);
+      }
+    }
+    uploadLayer(i, source){
+      const gl = this.gl;
+      gl.bindTexture(gl.TEXTURE_2D_ARRAY, this.tex);
+      gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, true);
+      gl.texSubImage3D(gl.TEXTURE_2D_ARRAY, 0, 0,0,i, this.texW,this.texH,1, gl.RGBA, gl.UNSIGNED_BYTE, source);
+    }
+    render(buffer, state){
+      const gl=this.gl, w=this.canvas.width, h=this.canvas.height;
+      this.ensureArray(w,h, buffer.capacity);
+      const count=Math.min(buffer.count, this.layers);
+
+      // map oldest->layer0
+      for(let i=0;i<count;i++){
+        const frame = buffer.get(count-1-i);
+        if(frame) this.uploadLayer(i, frame);
+      }
+
+      gl.viewport(0,0,w,h);
+      gl.clearColor(0,0,0,1); gl.clear(gl.COLOR_BUFFER_BIT);
+      gl.useProgram(this.prog);
+      gl.activeTexture(gl.TEXTURE0);
+      gl.bindTexture(gl.TEXTURE_2D_ARRAY, this.tex);
+      gl.uniform1i(this.u.frameArray, 0);
+
+      const blendIndex = ['normal','add','screen','multiply','lighten','darken'].indexOf(state.blendMode);
+
+      gl.uniform1i(this.u.historyLength, count);
+      gl.uniform1f(this.u.halfLifeSeconds, state.decayHalfLife/1000);
+      gl.uniform1i(this.u.stride, state.stride);
+      gl.uniform1i(this.u.blendMode, blendIndex<0?0:blendIndex);
+      gl.uniform1i(this.u.helixEnable, state.helixEnable?1:0);
+      gl.uniform2f(this.u.center, state.centerX, state.centerY);
+      gl.uniform1f(this.u.angularStep, state.angularStep * state.spiralDirection);
+      gl.uniform1f(this.u.radialGain, state.radialGain);
+      gl.uniform1i(this.u.slitScanEnable, state.slitScanEnable?1:0);
+      gl.uniform1i(this.u.slitScanOrientation, state.slitScanOrientation==='horizontal'?0:1);
+      gl.uniform1f(this.u.bandWidth, state.bandWidth);
+      gl.uniform1f(this.u.bandStep, state.bandStep);
+      gl.uniform1f(this.u.exposure, state.exposure);
+      gl.uniform1f(this.u.contrast, state.contrast);
+      gl.uniform1f(this.u.saturation, state.saturation);
+      gl.uniform1f(this.u.temperature, state.temperature);
+      gl.uniform1f(this.u.vignetteStrength, state.vignetteStrength);
+      gl.uniform1f(this.u.vignetteSoftness, state.vignetteSoftness);
+      gl.uniform1f(this.u.glow, state.glow);
+      gl.uniform2f(this.u.resolution, w, h);
+
+      gl.bindVertexArray(this.vao);
+      gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+    }
+    resize(w,h){ this.canvas.width=w; this.canvas.height=h; }
+  }
+
+  // --- Canvas fallback
+  class Renderer2D {
+    constructor(canvas){ this.canvas=canvas; this.ctx=canvas.getContext('2d'); }
+    render(buffer, state){
+      const ctx=this.ctx, w=this.canvas.width, h=this.canvas.height;
+      ctx.clearRect(0,0,w,h);
+      ctx.globalCompositeOperation = state.blendMode;
+
+      const frameDt = 1/30;
+      const decayBase = Math.pow(0.5, frameDt/(state.decayHalfLife/1000));
+
+      for(let i=buffer.count-1;i>=0;i-=state.stride){
+        const frame = buffer.get(i); if(!frame) continue;
+        ctx.save();
+
+        if(state.helixEnable){
+          const ang = (buffer.count - i) * state.angularStep * state.spiralDirection;
+          const r   = (buffer.count - i) * state.radialGain;
+          ctx.translate(w*state.centerX, h*state.centerY);
+          ctx.rotate(ang);
+          ctx.translate(r,0);
+          ctx.translate(-w*state.centerX, -h*state.centerY);
+        }
+
+        if(state.slitScanEnable){
+          const band = state.bandWidth|0, step=state.bandStep|0;
+          for(let x=0; x<w; x+=band){
+            ctx.drawImage(frame, x,0, band,h, (x+(i%step))%w, 0, band, h);
+          }
+        } else {
+          const a = Math.pow(decayBase, (buffer.count-1-i));
+          ctx.globalAlpha = a;
+          ctx.drawImage(frame, 0,0,w,h);
+        }
+        ctx.restore();
+      }
+      // (post effects omitted in Canvas for speed)
+    }
+    resize(w,h){ this.canvas.width=w; this.canvas.height=h; }
+  }
+
+  // --- Recorder
+  class Recorder {
+    constructor(canvas){ this.canvas=canvas; this.rec=null; this.chunks=[]; }
+    start(bps){
+      const stream=this.canvas.captureStream(30);
+      const opts={ mimeType:'video/webm;codecs=vp9', videoBitsPerSecond:bps };
+      this.chunks=[];
+      this.rec=new MediaRecorder(stream, opts);
+      this.rec.ondataavailable = e=>{ if(e.data?.size) this.chunks.push(e.data); };
+      this.rec.onstop = ()=>{
+        const blob = new Blob(this.chunks, { type:'video/webm' });
+        const a=document.createElement('a');
+        const stamp=new Date().toISOString().replace(/[:.]/g,'-');
+        a.href=URL.createObjectURL(blob); a.download=`chronovisor-${stamp}.webm`; a.click();
+      };
+      this.rec.start();
+    }
+    stop(){ this.rec?.stop(); }
+  }
+
+  // --- Controller
+  class Controller {
+    constructor(){
+      this.canvas = cvs;
+      this.video = new VideoSource(this.onFrame);
+      this.buffer = new FrameRingBuffer(state.bufferLength);
+      this.renderer = null;
+      this.recorder = new Recorder(this.canvas);
+      this.recording=false; this.recStart=0;
+      this.lastRAF=0; this.fps=0; this.frames=0; this.lastFPS=performance.now();
+      this.drag=null; this.isPanning=false;
+
+      this.initRenderer();
+      this.bindUI();
+      this.bindInteractions();
+      this.loop(0);
+    }
+    initRenderer(){
+      const useGL = state.rendererType==='webgl' && !!this.canvas.getContext('webgl2');
+      try{
+        this.renderer = useGL ? new RendererGL(this.canvas) : new Renderer2D(this.canvas);
+      } catch(e){
+        errBox.textContent = e.message;
+        if(useGL){ state.rendererType='canvas'; this.renderer=new Renderer2D(this.canvas); }
+      }
+      this.resizeCanvas();
+    }
+    resizeCanvas(){
+      const scale = Number(state.resolutionScale)||1;
+      // Layout: aside is ~280px; use remaining width
+      const availW = Math.max(300, (window.innerWidth - 280));
+      const availH = Math.max(200, (window.innerHeight - 64));
+      const w = Math.floor(availW * scale);
+      const h = Math.floor(availH * scale);
+      this.canvas.style.width  = (w/scale) + 'px';
+      this.canvas.style.height = (h/scale) + 'px';
+      this.renderer.resize(w,h);
+    }
+    onFrame = (video) => { this.buffer.push(video); }
+    loop = (t) => {
+      requestAnimationFrame(this.loop);
+      // render
+      if(this.renderer && this.buffer.count>0){
+        this.renderer.render(this.buffer, state);
+      }
+      // fps
+      this.frames++;
+      if(performance.now() - this.lastFPS > 1000){
+        this.fps = this.frames; this.frames=0; this.lastFPS=performance.now();
+        fpsBox.textContent = `FPS: ${this.fps}`;
+      }
+      // basic adaptive draw: if fps too low, shrink history a bit
+      if(this.fps && this.fps < state.targetFPS*0.5){
+        state.bufferLength = Math.max(10, Math.floor(state.bufferLength*0.9));
+        this.buffer.resize(state.bufferLength);
+        $('bufLen').value = state.bufferLength;
+        saveState();
+      }
+    }
+
+    // --- UI
+    bindUI(){
+      const bind = (id, key, parser=(v)=>v) => {
+        const el=$(id); if(!el) return;
+        const set = (val)=>{ (el.type==='checkbox') ? el.checked=val : el.value=String(val) };
+        set(state[key]);
+        el.addEventListener(el.type==='checkbox'?'change':'input', e=>{
+          const v = (el.type==='checkbox') ? el.checked :
+                    (el.type==='number' || el.type==='range') ? parser(e.target.value) : e.target.value;
+          state[key]=v; saveState();
+          if(key==='bufferLength') this.buffer.resize(state.bufferLength);
+          if(key==='rendererType' || key==='resolutionScale') this.initRenderer();
+        });
+      };
+
+      // Source controls
+      $('camBtn').onclick = async () => {
+        if(this.video.webcam){ this.video.stopCam(); $('camBtn').textContent='Enable Webcam'; }
+        else {
+          try { await this.video.startCam(); $('camBtn').textContent='Disable Webcam'; }
+          catch(e){ err
